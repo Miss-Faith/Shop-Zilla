@@ -1,0 +1,26 @@
+*{
+    padding: 0%;
+    box-sizing: border-box;
+    margin: 0%;
+}
+::-webkit-scrollbar{
+    display: none;
+}
+body{
+    background-color: #E8E8E8;
+}
+.pass{
+    color: #df6a1f;
+}
+.fb-logo{
+    height: 2vw;
+}
+#facebook{
+    padding: 0.8vw;
+}
+.board{
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 0.5vw;
+    padding: 5vw;
+}
