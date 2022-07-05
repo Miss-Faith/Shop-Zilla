@@ -8,7 +8,7 @@ import requests
 # Create your views here.
 def get_results(request):
     
-    url_jumia = ""
+    url_jumia = "https://www.jumia.co.ke/computing/"
 
     jumia_results = requests.get(url_jumia)
 
