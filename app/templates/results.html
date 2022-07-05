@@ -9,8 +9,10 @@
 <body>
 {% for item in names %}
     <h2> Product: {{ item.name }}</h2>
+    <img src="{{ item.image }}" alt="{{ item.name }}">
     <h3> price: {{ item.price }}</h3>
-
+    <h3> location: {{ item.location }}</h3>
+    
 {% endfor %}
 </body>
 </html>
