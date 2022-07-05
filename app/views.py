@@ -1,5 +1,4 @@
-
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 
 from bs4 import BeautifulSoup
 import requests
@@ -52,3 +51,10 @@ def get_results(request):
     }
 
     return render(request, 'results.html',context)
+
+def home(request):
+    return render(request, 'home.html')
+
+def search(request):
+    return render(request, 'search.html')
+
