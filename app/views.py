@@ -8,7 +8,7 @@ import requests
 # Create your views here.
 def get_results(request):
     
-    url_jiji = "https://jiji.co.ke/search?query=johnie"
+    url_jiji = "https://jiji.co.ke/search?query=johnie+walker"
 
     jiji_results = requests.get(url_jiji)
 
