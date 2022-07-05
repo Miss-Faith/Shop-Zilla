@@ -5,3 +5,16 @@
   'GRAD' 0,
   'opsz' 48
 }
+
+#search {
+ background-image: url('/static/images/logo.png');
+}
+
+/* .compare {
+  display: inline-block;
+  width: 120px;
+} */
+
+.compare_price {
+  float: right;
+}
