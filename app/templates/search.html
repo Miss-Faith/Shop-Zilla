@@ -91,15 +91,17 @@
 <br><br>
 <div class="row">
   {% for item in names %}
-  <div class="col-lg-2 col-md-3 col-sm-4">
+  <div class="col-lg-2 col-md-3 col-sm-4" style="margin-bottom: 0.5rem;">
       <div class="card">
           <div class="card-title">
-              <h6> Product: {{ item.name }}</h6>
-              <img src="{{item.image}}" alt="{{ item.name}}" style="max-height: 200px;">
+            <h6> Product: {{ item.name }}</h6>
+            <img src="{{item.image}}" alt="{{ item.name}}" style="max-height: 200px;">
           </div>
           <div class="card-body">
-              <p> price: {{ item.price }}</p>
-              <p> location: {{ item.location }}</p>
+            <ul class="list-group list-group-flush">
+              <small><li class="list-group-item"> price: {{ item.price }}</li></small>
+              <small><li class="list-group-item"> location: {{ item.location}}</li></small>
+            </ul>
           </div>
       </div>
   </div>    
