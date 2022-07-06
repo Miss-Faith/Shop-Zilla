@@ -12,14 +12,12 @@
  background-image: url('/static/images/logo.png');
 }
 
-/* .compare {
-  display: inline-block;
-  width: 120px;
-} */
-
 .compare_price {
   float: right;
 }
 .nav-span{
   color: #df6a1f;
+}
+#carousel-img{
+  height: 45vw;
 }
