@@ -1,5 +1,5 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">
       <img src="{% static 'images/logo.png' %}" alt="nav-logo" class="img-fluid" width="55" height="50"><span><strong>SHOP<span class="nav-span">ZILLA</span></strong></span>
@@ -37,7 +37,7 @@
       </ul>
 
       <form class="d-flex input-group w-auto">
-        <input type="search" class="form-control" placeholder="Input query here..." aria-label="Search" />
+        <input type="search" class="form-control" placeholder="Search product here..." aria-label="Search" />
         <button class="btn btn-outline-primary" type="button" data-mdb-ripple-color="dark">
           <i class="fas fa-search border-0"></i>
         </button>
@@ -45,20 +45,3 @@
     </div>
   </div>
 </nav>
-
-<!-- <div class="container">
-  <nav class="navbar navbar-light justify-content-between">
-    <a class="navbar-brand" href="/">
-      <small><span>S<small>hop</small> Z<small>illa</small></span></small>
-    </a>
-    <a class="navbar-brand" href="/">
-      <img src="{% static 'images/logo.png' %}" alt="" width="auto" height="50">
-    </a>
-
-    <a href="#" class="navbar-brand">
-      <span class="material-symbols-outlined">person</span>
-    </a>
-      
-  </nav>
-    
-</div> -->
