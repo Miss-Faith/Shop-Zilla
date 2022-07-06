@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{{all_items}}
 <div id="search" class="container-fluid text-center">
   <br><br>
   <form class="form mr-sm-2" action='/search' role="search">
-    <input class="form-control mr-2 text-center" type="search" placeholder="Search for a product" name="imagesearch" aria-label="Search">
-    <small class="form-small">Trending searches: Phones, laptops, Games</small>
+    <input class="form-control mr-2 text-center" type="search" placeholder="Search for a product" name="searchitem" aria-label="Search">
+    <small class="form-small">To get a more accurate search specify the product item</small>
     <br>
     <button class="form-button text-center btn btn-warning btn-md my-2 my-sm-0" type="submit">Search</button>
   </form>
@@ -17,7 +18,7 @@
   <h6 class="text-center"> Search results for </h6>
   <div class="col-lg-3 col-md-3 col-sm-6" style="margin-bottom: 1rem;">
     <div class="card">
-      <div class="row card-title text-center">
+      <div class="card-title text-center">
         <h6>Shop Zilla Ranking</h6>
       </div>
       <div class="card-body">
@@ -42,14 +43,24 @@
   <div class="col-lg-3 col-md-3 col-sm-6" style="margin-bottom: 1rem;">
     <div class="card">
       <div class="card-title text-center">
-        <h6>Jumia</h6>
+        {% if min_item %}
+        <h6>{{store}}</h6>
+        {% endif %}
+        {% if min_item.image %}
+        <img src="{{min_item.image}}" class="card-img-top" alt="image">
+        {% else %}
         <img src="/static/images/logo.png" class="card-img-top" alt="image">
+        {% endif %}
       </div>
       <div class="card-body">
         <ul class="list-group list-group-flush">
-          <small><li class="list-group-item">Price: Ksh. 200</li></small>
-          <small><li class="list-group-item">Shipping: Ksh. 100</li></small>
-          <small><li class="list-group-item">Rating: 4.7</li></small>
+          {% if min_item %}
+          <small><li class="list-group-item">Ksh. {{min_item.price}}</li></small>
+          <small><li class="list-group-item">{{min_item.rating}}</li></small>
+          <small><li class="list-group-item">{{min_item.location}}</li></small>
+          {% else %}
+          <small><li class="list-group-item">Search for an item</li></small>
+          {% endif %}
         </ul>
       </div>
     </div>
@@ -86,5 +97,26 @@
       </div>
     </div>
   </div>
+</div>
+<br><br>
+<div class="row">
+  min({{all_items.values}})
+  <br><br><br>
+  {% for item in all_items %}
+  <div class="col-lg-2 col-md-3 col-sm-4" style="margin-bottom: 0.5rem;">
+      <div class="card">
+          <div class="card-title">
+            <h6> Product: {{item.name }}</h6>
+            <img src="{{item.image}}" alt="{{ item.name}}" style="max-height: 200px;">
+          </div>
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <small><li class="list-group-item"> price: Ksh {{ item.price }}</li></small>
+              <small><li class="list-group-item"> location: {{ item.location}}</li></small>
+            </ul>
+          </div>
+      </div>
+  </div>    
+  {% endfor %}
 </div>
 {% endblock %}

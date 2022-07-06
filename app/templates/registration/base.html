@@ -11,11 +11,12 @@
     {% if title %}
     <title>Welcome</title>
     {% else %}
-    <title>Welcome</title>
+    <title>Shopzilla - Welcome</title>
     {%endif%}
 
     {% block styles %}
         {% bootstrap_css %}
+        <link rel="shortcut icon" href="{% static 'sign-assets/favicon.png' %}" type="image/x-icon">
         <link rel="stylesheet" href="{% static 'css/login.css'%}">
         <link rel="stylesheet" href="{% static 'css/register.css' %}">
     {% endblock %}

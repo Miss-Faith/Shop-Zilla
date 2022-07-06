@@ -1,12 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>res</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+<div id="search" class="container-fluid text-center">
+    <br><br>
+    <form class="form mr-sm-2" action='/search' role="search">
+      <input class="form-control mr-2 text-center" type="search" placeholder="Search for a product" name="searchitem" aria-label="Search">
+      <small class="form-small">To get a more accurate search specify the product item</small>
+      <br>
+      <button class="form-button text-center btn btn-warning btn-md my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <br>
+</div>
+
+    <div class="row">
+        {% for item in names %}
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="card-title">
+                    <h6> Product: {{ item.name }}</h6>
+                    <img src="{{item.image}}" alt="{{ item.name}}" style="max-height: 200px;">
+                </div>
+                <div class="card-body">
+                    <p> price: {{ item.price }}</p>
+                    <p> location: {{ item.location }}</p>
+                </div>
+            </div>
+        </div>    
+        {% endfor %}
+    </div>
+    
+    
+{% block content %}
 <!-- <div>
     <h1>Hello JIJI</h1>
     {% for item in names %}
@@ -38,5 +61,6 @@
     
 {% endfor %}
 </div>
-</body>
-</html>
+
+    {% endblock %}
+
