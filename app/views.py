@@ -59,6 +59,7 @@ def search(request):
         global search
         search = request.GET.get("searchitem").replace(" ", "%20")
 
+    store = 'Jiji'
     url_jiji_search = "https://jiji.co.ke/search?query="
     url_jiji = "%s%s"%(url_jiji_search,search)
     jiji_results = requests.get(url_jiji)
@@ -69,10 +70,10 @@ def search(request):
     price= []
     image= []
     location= []
-    all_items = []
+    total_items = []
     for item in jiji_items:
         jiji_item_name = item.find('h4',class_="qa-advert-title").text
-        jiji_item_price = item.find('p',class_="b-list-advert__item-price").text
+        jiji_item_price = int(item.find('p',class_="b-list-advert__item-price").text.replace('KSh ', '').replace('\n ', '').replace(' ', '').replace(',', ''))
         jiji_item_image = item.find('img').get('src')
         jiji_item_location = item.find('div', class_="b-list-advert__item-info").text.split(',')[0]
 
@@ -81,23 +82,23 @@ def search(request):
         image.append(jiji_item_image)
         location.append(jiji_item_location)
 
-    for (a, b ,c ,d) in zip(name, price,image,location):
+    for (a, b ,c ,d) in zip(name,price,image,location):
         
-        names = {
+        items = {
             'name': a,
             'price': b,
             'image': c,
             'location': d
         } 
         
-        all_items.append(names)
+        total_items.append(items)
+        all_items = sorted(total_items, key=lambda k: k['price'])
+        min_item = all_items[0]
 
     context={
-        'title': 'Results',
-        'price': price,
-        'names': all_items,
-        'search': search,
-        'url_jiji': url_jiji
+        'all_items': all_items,
+        'min_item': min_item,
+        'store': store,
     }
 
     return render(request, 'search.html', context)
