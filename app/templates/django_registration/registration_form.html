@@ -2,6 +2,10 @@
 {% load bootstrap5 %}
 {% block content %}
 
+
+{% include 'navbar.html'%}
+
+
 <div class="container mt-3">
     <div class="row register">
         <div class="col-sm-3"></div>
@@ -20,9 +24,9 @@
                 <button class="btn reg-btn" type="submit">Create Account</button>
                 <input type="hidden" name="next" value="{{next}}">
             </div>
-            <p class="text-center mt-3">OR</p>
+            <!-- <p class="text-center mt-3">OR</p>
             <button class="btn login-btn" type="submit">Create Account with Facebook</button>
-            <button class="btn login-btn mt-2" type="submit" id="email-btn">Create Account with Email</button>
+            <button class="btn login-btn mt-2" type="submit" id="email-btn">Create Account with Email</button> -->
         </div>
         
 
