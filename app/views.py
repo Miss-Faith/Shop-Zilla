@@ -16,9 +16,9 @@ def search(request):
         search_jumia = request.GET.get("searchitem").replace(" ", "+")
 
     else:
-        search_jiji = ""
-        search_copia = ""
-        search_jumia = ""
+        search_jiji = "chair"
+        search_copia = "chair"
+        search_jumia = "chair"
 
     store_jiji = 'Jiji'
     url_jiji_search = "https://jiji.co.ke/search?query="
@@ -60,7 +60,7 @@ def search(request):
         min_jiji_item = ""
 
     store_copia = 'Copia'
-    url_copia = 'https://copia.co.ke/?s=replace_search_text&post_type=product&title=1&excerpt=0&content=0&categories=0&attributes=0&tags=0&sku=1&orderby=date-DESC&ixwps=1'.replace("replace_search_text ", search_copia)
+    url_copia = 'https://copia.co.ke/?s=replace_search_text&post_type=product&title=1&excerpt=0&content=0&categories=0&attributes=0&tags=0&sku=1&orderby=date-DESC&ixwps=1'.replace("replace_search_text", search_copia)
     copia_results = requests.get(url_copia)
     copia_soup = BeautifulSoup(copia_results.text, 'html.parser')
     copia_items = copia_soup.find_all('div', class_='product-small')
@@ -72,7 +72,7 @@ def search(request):
 
     for item in copia_items:
         copia_item_name = item.find('p', class_="woocommerce-loop-product__title").text
-        copia_item_price = item.find('bdi').text
+        copia_item_price = int(item.find('bdi').text.replace('KSh', '').replace(',', ''))
         copia_item_image = item.find('img').get('data-src')
 
         copia_product_name.append(copia_item_name)
@@ -118,10 +118,11 @@ def search(request):
         if jumia_item_rating != None:
             jumia_item_rating = jumia_item_rating.text
 
-        jumia_product_name.append(jumia_item_name)
-        jumia_product_price.append(jumia_item_price)
-        jumia_product_image.append(jumia_item_image)
-        jumia_product_rating.append(jumia_item_rating)
+        if jumia_item_name and jumia_item_price:
+            jumia_product_name.append(jumia_item_name)
+            jumia_product_price.append(jumia_item_price)
+            jumia_product_image.append(jumia_item_image)
+            jumia_product_rating.append(jumia_item_rating)
 
         for (a, b ,c ,d) in zip(jumia_product_name, jumia_product_price,jumia_product_image,jumia_product_rating):
             
