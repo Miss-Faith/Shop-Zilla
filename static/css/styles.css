@@ -8,9 +8,9 @@
 ::-webkit-scrollbar{
   display: none;
 }
-#search {
+/* #search {
  background-image: url('/static/images/logo.png');
-}
+} */
 
 .compare_price {
   float: right;
