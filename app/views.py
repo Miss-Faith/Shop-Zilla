@@ -4,116 +4,25 @@ from bs4 import BeautifulSoup
 import requests
 
 # Create your views here.
-def get_results(request):
-    
-def get_jumia_data():
-
-    url_jumia =  "https://www.jumia.co.ke/catalog/?q=johnie+walker"
-    jumia_results = requests.get(url_jumia)
-    jumia_soup = BeautifulSoup(jumia_results.text, 'html.parser')
-    jumia_items = jumia_soup.find_all('a', class_="core")
-
-    jumia_product_name = []
-    jumia_product_price = []
-    jumia_product_image = []
-    jumia_product_rating = []
-    all_jumia_products = []
-
-    for item in jumia_items:
-        
-        jumia_item_name = item.find('h3', class_="name").text
-        jumia_item_price = item.find('div', class_="prc").text
-        jumia_item_image = item.find('img').get('data-src')
-        jumia_item_rating = item.find('div', class_="_s")
-        
-        
-        if jumia_item_rating != None:
-            jumia_item_rating = jumia_item_rating.text
-
-            jumia_product_name.append(jumia_item_name)
-            jumia_product_price.append(jumia_item_price)
-            jumia_product_image.append(jumia_item_image)
-            jumia_product_rating.append(jumia_item_rating)
-
-        for (a, b ,c ,d) in zip(jumia_product_name, jumia_product_price,jumia_product_image,jumia_product_rating):
-            
-                jumia_product = {
-                    'name': a,
-                    'price': b,
-                    'image': c,
-                    'rating': d
-                } 
-                
-                all_jumia_products.append(jumia_product)
-                # print(all_jumia_products)
-
-    return all_jumia_products
-
-def get_copia_data():
-
-    url_copia = 'https://copia.co.ke/?s=chair&post_type=product&title=1&excerpt=0&content=0&categories=0&attributes=0&tags=0&sku=1&orderby=date-DESC&ixwps=1'
-    copia_results = requests.get(url_copia)
-    copia_soup = BeautifulSoup(copia_results.text, 'html.parser')
-    copia_items = copia_soup.find_all('div', class_='product-small')
-
-    copia_product_name = []
-    copia_product_price = []
-    copia_product_image = []
-    
-    all_copia_products = []
-
-    for item in copia_items:
-        
-        copia_item_name = item.find('p', class_="woocommerce-loop-product__title").text
-        copia_item_price = item.find('bdi').text
-        copia_item_image = item.find('img').get('data-src')
-        
-
-        copia_product_name.append(copia_item_name)
-        copia_product_price.append(copia_item_price)
-        copia_product_image.append(copia_item_image)
-            
-
-        for (a, b ,c ) in zip(copia_product_name, copia_product_price,copia_product_image):
-            
-            copia_product = {
-                'name': a,
-                'price': b,
-                'image': c,
-                
-            } 
-            
-            all_copia_products.append(copia_product)
-            # print(all_copia_products)
-
-    return all_copia_products
-    
-    all_items.append(names)
-        
-    all_copia_products = get_copia_data()
-    all_jumia_products = get_jumia_data()
-    print(len(all_copia_products))
-    context={
-        'title': 'Results',
-        'all_jumia_items': all_jumia_products,
-        'names': all_items,
-        'all_copia_items': all_copia_products
-    }
-
-    return render(request, 'results.html',context)
-
-
 def home(request):
     return render(request, 'home.html')
 
 def search(request):
     if 'searchitem' in request.GET and request.GET["searchitem"]:
-        global search
-        search = request.GET.get("searchitem").replace(" ", "%20")
+        global search_jiji, search_copia, search_jumia
 
-    store = 'Jiji'
+        search_jiji = request.GET.get("searchitem").replace(" ", "%20")
+        search_copia = request.GET.get("searchitem").replace(" ", "+")
+        search_jumia = request.GET.get("searchitem").replace(" ", "+")
+
+    else:
+        search_jiji = "chair"
+        search_copia = "chair"
+        search_jumia = "chair"
+
+    store_jiji = 'Jiji'
     url_jiji_search = "https://jiji.co.ke/search?query="
-    url_jiji = "%s%s"%(url_jiji_search,search)
+    url_jiji = "%s%s"%(url_jiji_search, search_jiji)
     jiji_results = requests.get(url_jiji)
     jiji_soup = BeautifulSoup(jiji_results.text, 'html.parser')
     jiji_items = jiji_soup.find_all('div', class_="qa-advert-list-item")
@@ -144,13 +53,103 @@ def search(request):
         } 
         
         total_items.append(items)
-        all_items = sorted(total_items, key=lambda k: k['price'])
-        min_item = all_items[0]
+    all_jiji_items = sorted(total_items, key=lambda k: k['price'])
+    if all_jiji_items:
+        min_jiji_item = all_jiji_items[0]
+    else:
+        min_jiji_item = ""
+
+    store_copia = 'Copia'
+    url_copia = 'https://copia.co.ke/?s=replace_search_text&post_type=product&title=1&excerpt=0&content=0&categories=0&attributes=0&tags=0&sku=1&orderby=date-DESC&ixwps=1'.replace("replace_search_text", search_copia)
+    copia_results = requests.get(url_copia)
+    copia_soup = BeautifulSoup(copia_results.text, 'html.parser')
+    copia_items = copia_soup.find_all('div', class_='product-small')
+
+    copia_product_name = []
+    copia_product_price = []
+    copia_product_image = []
+    all_copia_products = []
+
+    for item in copia_items:
+        copia_item_name = item.find('p', class_="woocommerce-loop-product__title").text
+        copia_item_price = int(item.find('bdi').text.replace('KSh', '').replace(',', ''))
+        copia_item_image = item.find('img').get('data-src')
+
+        copia_product_name.append(copia_item_name)
+        copia_product_price.append(copia_item_price)
+        copia_product_image.append(copia_item_image) 
+
+    for (a, b ,c ) in zip(copia_product_name, copia_product_price,copia_product_image):
+        
+        copia_product = {
+            'name': a,
+            'price': b,
+            'image': c,
+        } 
+        
+        all_copia_products.append(copia_product)
+    all_copia_items = sorted(all_copia_products, key=lambda k: k['price'])
+    if all_copia_items:
+        min_copia_item = all_copia_items[0]
+    else:
+        min_copia_item = ""
+
+    store_jumia = 'Jumia'
+    url_jumia_search =  "https://www.jumia.co.ke/catalog/?q="
+    url_jumia = "%s%s"%(url_jumia_search,search_jumia)
+    jumia_results = requests.get(url_jumia)
+    jumia_soup = BeautifulSoup(jumia_results.text, 'html.parser')
+    jumia_items = jumia_soup.find_all('a', class_="core")
+
+    jumia_product_name = []
+    jumia_product_price = []
+    jumia_product_image = []
+    jumia_product_rating = []
+    all_jumia_products = []
+
+    for item in jumia_items:
+        
+        jumia_item_name = item.find('h3', class_="name").text
+        jumia_item_price = item.find('div', class_="prc").text
+        jumia_item_image = item.find('img').get('data-src')
+        jumia_item_rating = item.find('div', class_="_s")
+        
+        
+        if jumia_item_rating != None:
+            jumia_item_rating = jumia_item_rating.text
+
+        if jumia_item_name and jumia_item_price:
+            jumia_product_name.append(jumia_item_name)
+            jumia_product_price.append(jumia_item_price)
+            jumia_product_image.append(jumia_item_image)
+            jumia_product_rating.append(jumia_item_rating)
+
+        for (a, b ,c ,d) in zip(jumia_product_name, jumia_product_price,jumia_product_image,jumia_product_rating):
+            
+            jumia_product = {
+                'name': a,
+                'price': b,
+                'image': c,
+                'rating': d
+            } 
+            
+            all_jumia_products.append(jumia_product)
+        all_jumia_items = sorted(all_jumia_products, key=lambda k: k['price'])
+        if all_jumia_items:
+            min_jumia_item = all_jumia_items[0]
+        else:
+            min_jumia_item = "" 
 
     context={
-        'all_items': all_items,
-        'min_item': min_item,
-        'store': store,
+        'all_jiji_items': all_jiji_items,
+        'min_jiji_item': min_jiji_item,
+        'store_jiji': store_jiji,
+        'all_copia_items': all_copia_items,
+        'min_copia_item': min_copia_item,
+        'store_copia': store_copia,
+        'all_jumia_items': all_jumia_items,
+        'min_jumia_item': min_jumia_item,
+        'store_jumia': store_jumia,
     }
 
     return render(request, 'search.html', context)

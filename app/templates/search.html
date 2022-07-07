@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{{all_items}}
 <div id="search" class="container-fluid text-center">
   <br><br>
   <form class="form mr-sm-2" action='/search' role="search">
@@ -41,68 +40,95 @@
   </div>
 
   <div class="col-lg-3 col-md-3 col-sm-6" style="margin-bottom: 1rem;">
+    {% if min_jiji_item %}
     <div class="card">
       <div class="card-title text-center">
-        {% if min_item %}
-        <h6>{{store}}</h6>
+        {% if min_jiji_item %}
+        <h6>{{store_jiji}}</h6>
         {% endif %}
-        {% if min_item.image %}
-        <img src="{{min_item.image}}" class="card-img-top" alt="image">
+        {% if min_jiji_item.image %}
+        <img src="{{min_jiji_item.image}}" class="card-img-top" alt="image">
         {% else %}
         <img src="/static/images/logo.png" class="card-img-top" alt="image">
         {% endif %}
       </div>
       <div class="card-body">
         <ul class="list-group list-group-flush">
-          {% if min_item %}
-          <small><li class="list-group-item">Ksh. {{min_item.price}}</li></small>
-          <small><li class="list-group-item">{{min_item.rating}}</li></small>
-          <small><li class="list-group-item">{{min_item.location}}</li></small>
+          {% if min_jiji_item %}
+          <small><li class="list-group-item">Ksh. {{min_jiji_item.price}}</li></small>
+          <small><li class="list-group-item">{{min_jiji_item.rating}}</li></small>
+          <small><li class="list-group-item">{{min_jiji_item.location}}</li></small>
           {% else %}
           <small><li class="list-group-item">Search for an item</li></small>
           {% endif %}
         </ul>
       </div>
     </div>
+    {% endif %}
   </div>
 
   <div class="col-lg-3 col-md-3 col-sm-6" style="margin-bottom: 1rem;">
+    {% if min_jumia_item %}
     <div class="card">
       <div class="card-title text-center">
-        <h6>Kilimall</h6>
+        {% if min_jumia_item %}
+        <h6>{{store_jumia}}</h6>
+        {% endif %}
+        {% if min_jumia_item.image %}
+        <img src="{{min_jumia_item.image}}" class="card-img-top" alt="image">
+        {% else %}
         <img src="/static/images/logo.png" class="card-img-top" alt="image">
+        {% endif %}
       </div>
       <div class="card-body">
         <ul class="list-group list-group-flush">
-          <small><li class="list-group-item">Price: Ksh. 180</li></small>
-          <small><li class="list-group-item">Shipping: Ksh. 100</li></small>
-          <small><li class="list-group-item">Rating: 4.7</li></small>
+          {% if min_copia_item %}
+          <small><li class="list-group-item">Ksh. {{min_jumia_item.price}}</li></small>
+          <small><li class="list-group-item">{{min_jumia_item.rating}}</li></small>
+          <small><li class="list-group-item">{{min_jumia_item.location}}</li></small>
+          {% else %}
+          <small><li class="list-group-item">Search for an item</li></small>
+          {% endif %}
         </ul>
       </div>
     </div>
+    {% endif %}
   </div>
 
   <div class="col-lg-3 col-md-3 col-sm-6" style="margin-bottom: 1rem;">
+    {% if min_copia_item %}
     <div class="card">
       <div class="card-title text-center">
-        <h6>Jiji</h6>
+        {% if min_copia_item %}
+        <h6>{{store_copia}}</h6>
+        {% endif %}
+        {% if min_copia_item.image %}
+        <img src="{{min_copia_item.image}}" class="card-img-top" alt="image">
+        {% else %}
         <img src="/static/images/logo.png" class="card-img-top" alt="image">
+        {% endif %}
       </div>
       <div class="card-body">
         <ul class="list-group list-group-flush">
-          <small><li class="list-group-item">Price: Ksh. 200</li></small>
-          <small><li class="list-group-item">Shipping: Ksh. 100</li></small>
-          <small><li class="list-group-item">Rating: 4.7</li></small>
+          {% if min_copia_item %}
+          <small><li class="list-group-item">Ksh. {{min_copia_item.price}}</li></small>
+          <small><li class="list-group-item">{{min_copia_item.rating}}</li></small>
+          <small><li class="list-group-item">{{min_copia_item.location}}</li></small>
+          {% else %}
+          <small><li class="list-group-item">Search for an item</li></small>
+          {% endif %}
         </ul>
       </div>
     </div>
+    {% endif %}
   </div>
 </div>
 <br><br>
 <div class="row">
-  min({{all_items.values}})
+  {% if all_jiji_items %}
+  <h1 class="text-center">{{store_jiji}}</h1>
   <br><br><br>
-  {% for item in all_items %}
+  {% for item in all_jiji_items %}
   <div class="col-lg-2 col-md-3 col-sm-4" style="margin-bottom: 0.5rem;">
       <div class="card">
           <div class="card-title">
@@ -118,5 +144,50 @@
       </div>
   </div>    
   {% endfor %}
+  {% endif %}
+</div>
+<div class="row">
+  {% if all_jumia_items %}
+  <h1 class="text-center">{{store_jumia}}</h1>
+  <br><br><br>
+  {% for item in all_jumia_items %}
+  <div class="col-lg-2 col-md-3 col-sm-4" style="margin-bottom: 0.5rem;">
+      <div class="card">
+          <div class="card-title">
+            <h6> Product: {{item.name }}</h6>
+            <img src="{{item.image}}" alt="{{ item.name}}" style="max-height: 200px;">
+          </div>
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <small><li class="list-group-item"> price: Ksh {{ item.price }}</li></small>
+              <small><li class="list-group-item"> location: {{ item.location}}</li></small>
+            </ul>
+          </div>
+      </div>
+  </div>    
+  {% endfor %}
+  {% endif %}
+</div>
+<div class="row">
+  {% if all_copia_items %}
+  <h1 class="text-center">{{store_copia}}</h1>
+  <br><br><br>
+  {% for item in all_copia_items %}
+  <div class="col-lg-2 col-md-3 col-sm-4" style="margin-bottom: 0.5rem;">
+      <div class="card">
+          <div class="card-title">
+            <h6> Product: {{item.name }}</h6>
+            <img src="{{item.image}}" alt="{{ item.name}}" style="max-height: 200px;">
+          </div>
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <small><li class="list-group-item"> price: Ksh {{ item.price }}</li></small>
+              <small><li class="list-group-item"> location: {{ item.location}}</li></small>
+            </ul>
+          </div>
+      </div>
+  </div>    
+  {% endfor %}
+  {% endif %}
 </div>
 {% endblock %}
