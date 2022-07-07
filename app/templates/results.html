@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+<div id="search" class="container-fluid text-center">
+    <br><br>
+    <form class="form mr-sm-2" action='/search' role="search">
+      <input class="form-control mr-2 text-center" type="search" placeholder="Search for a product" name="searchitem" aria-label="Search">
+      <small class="form-small">To get a more accurate search specify the product item</small>
+      <br>
+      <button class="form-button text-center btn btn-warning btn-md my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <br>
+</div>
+
+    <div class="row">
+        {% for item in names %}
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="card-title">
+                    <h6> Product: {{ item.name }}</h6>
+                    <img src="{{item.image}}" alt="{{ item.name}}" style="max-height: 200px;">
+                </div>
+                <div class="card-body">
+                    <p> price: {{ item.price }}</p>
+                    <p> location: {{ item.location }}</p>
+                </div>
+            </div>
+        </div>    
+        {% endfor %}
+    </div>
+    
+    
+{% block content %}
+<!-- <div>
+    <h1>Hello JIJI</h1>
+    {% for item in names %}
+    <h2> Product: {{ item.name }}</h2>
+    <img src="{{ item.image }}" alt="{{ item.name }}">
+    <h3> price: {{ item.price }}</h3>
+    <h3> location: {{ item.location }}</h3>
+    
+{% endfor %}
+</div> -->
+<!-- <div>
+    <h1>Hello jumia</h1>
+    {% for jumia in all_jumia_items %}
+    <h2> Product: {{ jumia.name }}</h2>
+    <img src="{{ jumia.image }}" alt="{{ item.name }}">
+    <h3> price: {{ jumia.price }}</h3>
+    <h3> rating: {{ jumia.rating }}</h3>
+    
+{% endfor %} 
+ </div>  -->
+<div>
+
+    <h1>Hello Copia</h1>
+    {% for copia in all_copia_items %}
+    <h2> Product: {{ copia.name }}</h2>
+    <img src="{{ copia.image }}" alt="{{ copia.name }}">
+    <h3> price: {{ copia.price }}</h3>
+    
+    
+{% endfor %}
+</div>
+
+    {% endblock %}
+

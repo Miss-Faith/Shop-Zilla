@@ -5,6 +5,9 @@ name = "pypi"
 
 [packages]
 django = "*"
+django-bootstrap-v5 = "*"
+django-registration = "*"
+requests = "*"
 
 [dev-packages]
 
