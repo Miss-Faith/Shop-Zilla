@@ -18,7 +18,7 @@ body{
     padding: 1vw;
     margin-top: 10px;
 }
-.login-btn{
+/* .login-btn{
     background-color: #3b5998;
     color: white;
     width: 100%;
@@ -28,7 +28,7 @@ body{
 }
 #email-btn{
     background-color: #26a7de;
-}
+} */
 small{
     display: none;
 }

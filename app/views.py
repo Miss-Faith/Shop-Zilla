@@ -27,6 +27,7 @@ def search(request):
     jiji_soup = BeautifulSoup(jiji_results.text, 'html.parser')
     jiji_items = jiji_soup.find_all('div', class_="qa-advert-list-item")
 
+
     name = []
     price= []
     image= []
@@ -42,6 +43,7 @@ def search(request):
         price.append(jiji_item_price)
         image.append(jiji_item_image)
         location.append(jiji_item_location)
+
 
     for (a, b ,c ,d) in zip(name,price,image,location):
         
