@@ -64,7 +64,7 @@
         <ul class="list-group list-group-flush">
           {% if min_jiji_item %}
           <small>
-            <li class="list-group-item px-3"><strong>Price:&nbsp;</strong>Ksh. {{min_jiji_item.price}}</li>
+            <li class="list-group-item px-3"><strong>Price:&nbsp;</strong>{{min_jiji_item.price}}</li>
           </small>
           <small>
             <li class="list-group-item px-3"><strong>Location:&nbsp;</strong>{{min_jiji_item.location}}</li>
@@ -78,6 +78,7 @@
     </div>
     {% endif %}
   </div>
+
 
   <!-- JUMIA -->
   <div class="col-lg-3 col-md-3 col-sm-6" style="margin-bottom: 1rem;">
@@ -176,7 +177,9 @@
         </a>
       </div>
       <div class="card-body">
-        <h5 class="card-title text-center"><strong> Product:</strong> {{item.name }}</h5>
+        <small>
+          <p class="card-title text-center"><strong> Product:</strong> {{item.name }}</p>
+        </small>
         <ul class="list-group list-group-flush">
           <small><li class="list-group-item"><strong>Price:&nbsp;</strong> Ksh {{ item.price }}</li></small>
           <small><li class="list-group-item"><strong>Location:&nbsp;</strong> {{ item.location}}</li></small>
@@ -204,7 +207,9 @@
         </a>
       </div>
       <div class="card-body">
-        <h5 class="card-title text-center"><strong> Product:</strong> {{item.name }}</h5>
+        <small>
+          <p class="card-title text-center"><strong> Product:</strong> {{item.name }}</p>
+        </small>
         <ul class="list-group list-group-flush">
           <small><li class="list-group-item"><strong>Price:&nbsp;</strong> Ksh {{ item.price }}</li></small>
           <small><li class="list-group-item"><strong>Location:&nbsp;</strong> {{ item.location}}</li></small>
@@ -232,7 +237,8 @@
         </a>
       </div>
       <div class="card-body">
-        <h5 class="card-title text-center"><strong> Product:</strong> {{item.name }}</h5>
+        <small><p class="card-title text-center"><strong> Product:</strong> {{item.name }}</p>
+        </small>
         <ul class="list-group list-group-flush">
           <small><li class="list-group-item"><strong>Price:&nbsp;</strong> Ksh {{ item.price }}</li></small>
           <small><li class="list-group-item"><strong>Location:&nbsp;</strong> {{ item.location}}</li></small>
