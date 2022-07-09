@@ -8,4 +8,7 @@ btnScrollToTop.addEventListener('click', function() {
         behavior: "smooth",
     });
 });
-
+// ....... Adding PAGE YEAR ..................  //
+let date = new Date().getFullYear();
+let dateTag = document.getElementById("date");
+dateTag.innerHTML = "©" + " " + date;
