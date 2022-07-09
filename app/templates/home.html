@@ -37,10 +37,9 @@
     </button>
   </div>
   <!-- END OF CAROUSEL -->
-
 </div>
 <div class="container my-4">
-  <h2 class="text-center">ABOUT US</h2>
+  <h2 class="text-center" id="about">ABOUT US</h2>
   <hr>
   <div class="row">
     <div class="col-md-4">
@@ -57,7 +56,7 @@
           <p class="card-text mt-3">Jumia, Kenya's no. 1 online retailer was established in May 2013 with the aim and
             vision to become the one-stop shop for retail in Kenya with implementation of best practices both online and
             offline.
-            Jumia is the largest online retail store in Kenya.  
+            Jumia is the largest online retail store in Kenya.
           </p>
         </div>
       </div>
@@ -74,7 +73,8 @@
         </div>
         <div class="card-body">
           <h5 class="card-header">Kilimall</h5>
-          <p class="card-text mt-3">Kilimall is Kenya's leading online shopping mall.Kilimall serves a retail-customer base that continues to grow exponentially, offering products that span
+          <p class="card-text mt-3">Kilimall is Kenya's leading online shopping mall.Kilimall serves a retail-customer
+            base that continues to grow exponentially, offering products that span
             various categories. Kilimall continues to expand the mall, with
             the scope of offerings that will increase in variety, simplicity and convenience.
           </p>
@@ -92,14 +92,22 @@
         </div>
         <div class="card-body">
           <h5 class="card-header">Jiji</h5>
-          <p class="card-text mt-3">Jiji is the best place to sell anything to real people. <br>It is the biggest free online classified with an advanced security system. We provide a simple hassle-free solution to sell and buy almost anything.
+          <p class="card-text mt-3">Jiji is the best place to sell anything to real people. <br>It is the biggest free
+            online classified with an advanced security system. We provide a simple hassle-free solution to sell and buy
+            almost anything.
           </p>
         </div>
 
       </div>
     </div>
   </div>
+  
   <button id="btnScrollToTop">
     <i class="fas fa-angle-up"></i>
-</button>
-  {% endblock %}
+  </button>
+</div>
+<div class="container-fluid mt-5">
+  {% include 'footer.html'%}
+</div>
+
+{% endblock %}
