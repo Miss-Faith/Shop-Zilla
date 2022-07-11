@@ -34,8 +34,9 @@ def search(request):
     location= []
     total_items = []
     for item in jiji_items:
+        
         jiji_item_name = item.find('h4',class_="qa-advert-title").text
-        jiji_item_price = int(item.find('p',class_="b-list-advert__item-price").text.replace('KSh ', '').replace('\n ', '').replace(' ', '').replace(',', ''))
+        jiji_item_price = item.find('p',class_="b-list-advert__item-price").text.replace('KSh ', '').replace('\n ', '').replace(' ', '').replace(',', '')
         jiji_item_image = item.find('img').get('src')
         jiji_item_location = item.find('div', class_="b-list-advert__item-info").text.split(',')[0]
 
@@ -110,17 +111,13 @@ def search(request):
     all_jumia_products = []
 
     for item in jumia_items:
-        
-        jumia_item_name = item.find('h3', class_="name").text
-        jumia_item_price = item.find('div', class_="prc").text
-        jumia_item_image = item.find('img').get('data-src')
-        jumia_item_rating = item.find('div', class_="_s")
-        
-        
-        if jumia_item_rating != None:
-            jumia_item_rating = jumia_item_rating.text
+        if item.find('h3', class_='name') and item.find('div', class_='prc')and item.find('img',class_='img') and item.find('div', class_='_s'):
+            jumia_item_name = item.find('h3', class_="name").text
+            jumia_item_price = item.find('div', class_="prc").text
+            jumia_item_image = item.find('img').get('data-src')
+            jumia_item_rating = item.find('div', class_="_s").text
 
-        if jumia_item_name and jumia_item_price:
+        
             jumia_product_name.append(jumia_item_name)
             jumia_product_price.append(jumia_item_price)
             jumia_product_image.append(jumia_item_image)
