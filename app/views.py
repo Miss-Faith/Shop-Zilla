@@ -71,23 +71,27 @@ def search(request):
     copia_product_name = []
     copia_product_price = []
     copia_product_image = []
+    copia_product_link = []
     all_copia_products = []
 
     for item in copia_items:
         copia_item_name = item.find('p', class_="woocommerce-loop-product__title").text
         copia_item_price = int(item.find('bdi').text.replace('KSh', '').replace(',', ''))
         copia_item_image = item.find('img').get('data-src')
+        copia_item_link = item.find('a').get('href')
 
         copia_product_name.append(copia_item_name)
         copia_product_price.append(copia_item_price)
         copia_product_image.append(copia_item_image) 
+        copia_product_link.append( copia_item_link)
 
-    for (a, b ,c ) in zip(copia_product_name, copia_product_price,copia_product_image):
+    for (a, b ,c ,d ) in zip(copia_product_name, copia_product_price,copia_product_image,copia_product_link):
         
         copia_product = {
             'name': a,
             'price': b,
             'image': c,
+            'link': d
         } 
         
         all_copia_products.append(copia_product)
