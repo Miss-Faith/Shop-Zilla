@@ -38,3 +38,12 @@
 #carousel-img{
   height: 45vw;
 }
+a:hover{
+  color: #df6a1f!important;
+}
+a:active{
+  color: #df6a1f!important;
+}
+a:focus{
+  color: #df6a1f!important;
+}

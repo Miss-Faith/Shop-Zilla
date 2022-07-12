@@ -189,7 +189,8 @@
   <br><br><br>
   {% for item in all_jumia_items %}
   <div class="col-lg-2 col-md-3 col-sm-4" style="margin-bottom: 0.5rem;">
-      <div class="card">
+      <a href="{{item.link}}" target="_blank">
+        <div class="card ">
           <div class="card-title">
             <h6> Product: {{item.name }}</h6>
             <img src="{{item.image}}" alt="{{ item.name}}" style="max-height: 200px;">
@@ -201,6 +202,7 @@
             </ul>
           </div>
       </div>
+      </a>
   </div>    
   {% endfor %}
   {% endif %}
