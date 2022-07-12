@@ -24,7 +24,7 @@
   <title>Shop Zilla</title>
 </head>
 
-<body>
+<body onload = "startTimer()">
 
   {% include 'navbar.html'%}
 
@@ -32,12 +32,38 @@
 
   {% endblock %}
 
-
+  <div class="container-fluid mt-5">
+    {% include 'footer.html'%}
+  </div>
 
 
   <!-- MDB -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.js"></script>
   <script src="{% static 'js/base.js' %}"></script>
+  
+  <script type = "text/javascript">
+    function displayNextImage() {
+        x = (x === images.length - 1) ? 0 : x + 1;
+        document.getElementById("carousel-img").src = images[x];
+    }
+
+    function displayPreviousImage() {
+        x = (x <= 0) ? images.length - 1 : x - 1;
+        document.getElementById("carousel-img").src = images[x];
+    }
+
+    function startTimer() {
+        setInterval(displayNextImage, 5000);
+    }
+
+    var images = [], x = -1;
+    images[0] = "http://source.unsplash.com/1600x400/?smartphones";
+    images[1] = "http://source.unsplash.com/1600x400/?winebottle";
+    images[2] = "http://source.unsplash.com/1600x400/?shoes";
+    images[3] = "http://source.unsplash.com/1600x400/?laptops";
+    images[4] = "http://source.unsplash.com/1600x400/?cameras";
+    images[5] = "http://source.unsplash.com/1600x400/?furniture";
+</script>
 </body>
 
 </html>
