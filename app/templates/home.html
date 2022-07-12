@@ -37,10 +37,9 @@
     </button>
   </div>
   <!-- END OF CAROUSEL -->
-
 </div>
 <div class="container my-4">
-  <h2 class="text-center">ABOUT US</h2>
+  <h2 class="text-center" id="about">ABOUT US</h2>
   <hr>
   <div class="row">
     <div class="col-md-4">
@@ -54,25 +53,33 @@
         </div>
         <div class="card-body">
           <h5 class="card-header">Jumia</h5>
-          <p class="card-text mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam eaque doloremque ipsam, possimus nam qui velit at consequuntur! Consequuntur magnam quo, delectus neque asperiores quis officia suscipit ullam excepturi praesentium.</p>
+          <p class="card-text mt-3">Jumia, Kenya's no. 1 online retailer was established in May 2013 with the aim and
+            vision to become the one-stop shop for retail in Kenya with implementation of best practices both online and
+            offline.
+            Jumia is the largest online retail store in Kenya.
+          </p>
         </div>
       </div>
     </div>
 
     <div class="col-md-4">
-            <!-- CARD -->
-            <div class="card text-center">
-              <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                <img src="http://source.unsplash.com/160x160/?furniture" class="rounded img-fluid mt-3" alt="...">
-                <a href="#!">
-                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                </a>
-              </div>
-              <div class="card-body">
-                <h5 class="card-header">Kilimall</h5>
-                <p class="card-text mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam eaque doloremque ipsam, possimus nam qui velit at consequuntur! Consequuntur magnam quo, delectus neque asperiores quis officia suscipit ullam excepturi praesentium.</p>
-              </div>
-            </div>
+      <!-- CARD -->
+      <div class="card text-center">
+        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+          <img src="http://source.unsplash.com/160x160/?furniture" class="rounded img-fluid mt-3" alt="...">
+          <a href="#!">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+          </a>
+        </div>
+        <div class="card-body">
+          <h5 class="card-header">Kilimall</h5>
+          <p class="card-text mt-3">Kilimall is Kenya's leading online shopping mall.Kilimall serves a retail-customer
+            base that continues to grow exponentially, offering products that span
+            various categories. Kilimall continues to expand the mall, with
+            the scope of offerings that will increase in variety, simplicity and convenience.
+          </p>
+        </div>
+      </div>
 
     </div>
     <div class="col-md-4">
@@ -85,10 +92,22 @@
         </div>
         <div class="card-body">
           <h5 class="card-header">Jiji</h5>
-          <p class="card-text mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam eaque doloremque ipsam, possimus nam qui velit at consequuntur! Consequuntur magnam quo, delectus neque asperiores quis officia suscipit ullam excepturi praesentium.</p>
+          <p class="card-text mt-3">Jiji is the best place to sell anything to real people. <br>It is the biggest free
+            online classified with an advanced security system. We provide a simple hassle-free solution to sell and buy
+            almost anything.
+          </p>
         </div>
 
+      </div>
     </div>
   </div>
+  
+  <button id="btnScrollToTop">
+    <i class="fas fa-angle-up"></i>
+  </button>
 </div>
+<div class="container-fluid mt-5">
+  {% include 'footer.html'%}
+</div>
+
 {% endblock %}

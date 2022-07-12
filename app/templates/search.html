@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<button id="btnScrollToTop">
+  <i class="fas fa-angle-up"></i>
+</button>
+
 <div id="search" class="container-fluid text-center">
   <br><br>
   <form class="form mr-sm-2" action='/search' role="search">
@@ -47,6 +51,15 @@
       <div class="card">
         <div class="card-title text-center">
           {% if min_jiji_item %}
+
+          <small>
+            <li class="list-group-item px-3"><strong>Price:&nbsp;</strong>{{min_jiji_item.price}}</li>
+          </small>
+          <small>
+            <li class="list-group-item px-3"><strong>Location:&nbsp;</strong>{{min_jiji_item.location}}</li>
+          </small>
+          <!-- <li class="list-group-item px-3">{{min_jiji_item.rating}}</li> -->
+
           <h4 class="card-header">{{store_jiji}}</h4>
           {% endif %}
           {% if min_jiji_item.image %}
@@ -56,6 +69,7 @@
               <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
             </a>
           </div>
+
           {% else %}
           <img src="/static/images/logo.png" class="card-img-top img-fluid" alt="image">
           {% endif %}
@@ -80,6 +94,7 @@
     </a>
     {% endif %}
   </div>
+
 
   <!-- JUMIA -->
   <div class="col-lg-3 col-md-3 col-sm-6" style="margin-bottom: 1rem;">
@@ -167,76 +182,104 @@
 <!-- END OF PRODUCTS -->
 
 
-<div class="row">
+<div class="row mt-5">
+  <!-- JIJI ITEMS -->
   {% if all_jiji_items %}
   <h1 class="text-center">{{store_jiji}}</h1>
   <br><br><br>
   {% for item in all_jiji_items %}
   <div class="col-lg-2 col-md-3 col-sm-4" style="margin-bottom: 0.5rem;">
-      <a href="{{item.link}}" target="_blank">
-        <div class="card">
-          <div class="card-title">
-            <h6> Product: {{item.name }}</h6>
-            <img src="{{item.image}}" alt="{{ item.name}}" style="max-height: 200px;">
-          </div>
-          <div class="card-body">
-            <ul class="list-group list-group-flush">
-              <small><li class="list-group-item"> price: Ksh {{ item.price }}</li></small>
-              <small><li class="list-group-item"> location: {{ item.location}}</li></small>
-            </ul>
-          </div>
+  <a href="{{item.link}}" target="_blank">
+    <div class="card">
+      <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+        <img src="{{ item.image }}" alt="{{ item.name }}" class="img-fluid">
+        <a href="#!">
+          <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+        </a>
       </div>
-      </a>
+      <div class="card-body">
+        <small>
+          <p class="card-title text-center"><strong> Product:</strong> {{item.name }}</p>
+        </small>
+        <ul class="list-group list-group-flush">
+          <small><li class="list-group-item"><strong>Price:&nbsp;</strong> Ksh {{ item.price }}</li></small>
+          <small><li class="list-group-item"><strong>Location:&nbsp;</strong> {{ item.location}}</li></small>
+        </ul>
+      </div>
+    </div>
+ </a>
+
+      
   </div>    
   {% endfor %}
   {% endif %}
 </div>
+
+<!-- JUMIA ITEMS -->
 <div class="row">
   {% if all_jumia_items %}
   <h1 class="text-center">{{store_jumia}}</h1>
   <br><br><br>
   {% for item in all_jumia_items %}
-  <div class="col-lg-2 col-md-3 col-sm-4" style="margin-bottom: 0.5rem;">
-      <a href="{{item.link}}" target="_blank">
-        <div class="card ">
-          <div class="card-title">
-            <h6> Product: {{item.name }}</h6>
-            <img src="{{item.image}}" alt="{{ item.name}}" style="max-height: 200px;">
-          </div>
-          <div class="card-body">
-            <ul class="list-group list-group-flush">
-              <small><li class="list-group-item"> price: Ksh {{ item.price }}</li></small>
-              <small><li class="list-group-item"> Rating: {{ item.rating}}</li></small>
-            </ul>
-          </div>
+
+  <div class="col-lg-2 col-md-3 col-sm-4 mt-3" style="margin-bottom: 0.5rem;">
+   <a href="{{item.link}}" target="_blank">
+    <div class="card">
+      <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+        <img src="{{ item.image }}" alt="{{ item.name }}" class="img-fluid">
+        <a href="#!">
+          <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+        </a>
       </div>
-      </a>
+      <div class="card-body">
+        <small>
+          <p class="card-title text-center"><strong> Product:</strong> {{item.name }}</p>
+        </small>
+        <ul class="list-group list-group-flush">
+          <small><li class="list-group-item"><strong>Price:&nbsp;</strong> Ksh {{ item.price }}</li></small>
+          <small><li class="list-group-item"><strong>Location:&nbsp;</strong> {{ item.rating}}</li></small>
+        </ul>
+      </div>
+    </div>
+   </a>
+
   </div>    
   {% endfor %}
   {% endif %}
 </div>
+
 <div class="row">
+  <!-- COPIA ITEMS -->
   {% if all_copia_items %}
   <h1 class="text-center">{{store_copia}}</h1>
   <br><br><br>
   {% for item in all_copia_items %}
   <div class="col-lg-2 col-md-3 col-sm-4" style="margin-bottom: 0.5rem;">
-      <a href="{{item.link}}" target="_blank">
-        <div class="card">
-          <div class="card-title">
-            <h6> Product: {{item.name }}</h6>
-            <img src="{{item.image}}" alt="{{ item.name}}" style="max-height: 200px;">
-          </div>
-          <div class="card-body">
-            <ul class="list-group list-group-flush">
-              <small><li class="list-group-item"> price: Ksh {{ item.price }}</li></small>
-              <small><li class="list-group-item"> location: {{ item.location}}</li></small>
-            </ul>
-          </div>
+
+  <a href="{{item.link}}" target="_blank">
+    <div class="card">
+      <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+        <img src="{{ item.image }}" alt="{{ item.name }}" class="img-fluid">
+        <a href="#!">
+          <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+        </a>
       </div>
-      </a>
+      <div class="card-body">
+        <small><p class="card-title text-center"><strong> Product:</strong> {{item.name }}</p>
+        </small>
+        <ul class="list-group list-group-flush">
+          <small><li class="list-group-item"><strong>Price:&nbsp;</strong> Ksh {{ item.price }}</li></small>
+          <small><li class="list-group-item"><strong>Location:&nbsp;</strong> {{ item.location}}</li></small>
+        </ul>
+      </div>
+    </div>
+     </a>
+
   </div>    
   {% endfor %}
   {% endif %}
-</div> -->
+</div>
+<div class="container-fluid mt-5">
+  {% include 'footer.html'%}
+</div>
 {% endblock %}
