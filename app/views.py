@@ -32,26 +32,30 @@ def search(request):
     price= []
     image= []
     location= []
+    link= []
     total_items = []
     for item in jiji_items:
+        
         jiji_item_name = item.find('h4',class_="qa-advert-title").text
-        jiji_item_price = int(item.find('p',class_="b-list-advert__item-price").text.replace('KSh ', '').replace('\n ', '').replace(' ', '').replace(',', ''))
+        jiji_item_price = item.find('p',class_="b-list-advert__item-price").text.replace('KSh ', '').replace('\n ', '').replace(' ', '').replace(',', '')
         jiji_item_image = item.find('img').get('src')
         jiji_item_location = item.find('div', class_="b-list-advert__item-info").text.split(',')[0]
+        jiji_item_link = item.find('a').get('href')
 
         name.append(jiji_item_name)
         price.append(jiji_item_price)
         image.append(jiji_item_image)
         location.append(jiji_item_location)
+        link.append(jiji_item_link)
 
-
-    for (a, b ,c ,d) in zip(name,price,image,location):
+    for (a, b ,c ,d,e) in zip(name,price,image,location,link):
         
         items = {
             'name': a,
             'price': b,
             'image': c,
-            'location': d
+            'location': d,
+            'link': e,
         } 
         
         total_items.append(items)
@@ -70,23 +74,27 @@ def search(request):
     copia_product_name = []
     copia_product_price = []
     copia_product_image = []
+    copia_product_link = []
     all_copia_products = []
 
     for item in copia_items:
         copia_item_name = item.find('p', class_="woocommerce-loop-product__title").text
         copia_item_price = int(item.find('bdi').text.replace('KSh', '').replace(',', ''))
         copia_item_image = item.find('img').get('data-src')
+        copia_item_link = item.find('a').get('href')
 
         copia_product_name.append(copia_item_name)
         copia_product_price.append(copia_item_price)
         copia_product_image.append(copia_item_image) 
+        copia_product_link.append( copia_item_link)
 
-    for (a, b ,c ) in zip(copia_product_name, copia_product_price,copia_product_image):
+    for (a, b ,c ,d ) in zip(copia_product_name, copia_product_price,copia_product_image,copia_product_link):
         
         copia_product = {
             'name': a,
             'price': b,
             'image': c,
+            'link': d
         } 
         
         all_copia_products.append(copia_product)
@@ -101,38 +109,37 @@ def search(request):
     url_jumia = "%s%s"%(url_jumia_search,search_jumia)
     jumia_results = requests.get(url_jumia)
     jumia_soup = BeautifulSoup(jumia_results.text, 'html.parser')
-    jumia_items = jumia_soup.find_all('a', class_="core")
+    jumia_items = jumia_soup.find_all('article')
 
     jumia_product_name = []
     jumia_product_price = []
     jumia_product_image = []
     jumia_product_rating = []
+    jumia_product_link = []
     all_jumia_products = []
-
+    
     for item in jumia_items:
-        
-        jumia_item_name = item.find('h3', class_="name").text
-        jumia_item_price = item.find('div', class_="prc").text
-        jumia_item_image = item.find('img').get('data-src')
-        jumia_item_rating = item.find('div', class_="_s")
-        
-        
-        if jumia_item_rating != None:
-            jumia_item_rating = jumia_item_rating.text
+        if item.find('a').get('href') and item.find('h3', class_='name') and item.find('div', class_='prc')and item.find('img',class_='img') and item.find('div', class_='_s'):
+            jumia_item_name = item.find('h3', class_="name").text
+            jumia_item_price = item.find('div', class_="prc").text
+            jumia_item_image = item.find('img').get('data-src')
+            jumia_item_rating = item.find('div', class_="_s").text
+            jumia_item_link = 'https://jumia.co.ke'+item.find('a').get('href')
 
-        if jumia_item_name and jumia_item_price:
+            jumia_product_link.append(jumia_item_link)
             jumia_product_name.append(jumia_item_name)
             jumia_product_price.append(jumia_item_price)
             jumia_product_image.append(jumia_item_image)
             jumia_product_rating.append(jumia_item_rating)
 
-        for (a, b ,c ,d) in zip(jumia_product_name, jumia_product_price,jumia_product_image,jumia_product_rating):
+        for (a, b ,c ,d,e) in zip(jumia_product_name, jumia_product_price,jumia_product_image,jumia_product_rating,jumia_product_link):
             
             jumia_product = {
                 'name': a,
                 'price': b,
                 'image': c,
-                'rating': d
+                'rating': d,
+                'link': e
             } 
             
             all_jumia_products.append(jumia_product)
