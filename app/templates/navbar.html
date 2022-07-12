@@ -1,8 +1,8 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">
-      <img src="{% static 'images/logo.png' %}" alt="nav-logo" class="img-fluid" width="55" height="50"><span><strong>SHOP<span class="nav-span">ZILLA</span></strong></span>
+      <img src="{% static 'images/logo-bg.png' %}" alt="nav-logo" class="img-fluid" width="55" height="50"><span><strong>SHOP<span class="nav-span">ZILLA</span></strong></span>
     </a>
     <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarTogglerDemo02"
       aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,13 +38,6 @@
           </ul>
         </li>
       </ul>
-
-      <form class="d-flex input-group w-auto" action="/search" role="search">
-        <input type="search" class="form-control text-center" placeholder="Search product here..." aria-label="Search" />
-        <button class="btn btn-outline-primary" type="submit" data-mdb-ripple-color="dark">
-          <i class="fas fa-search border-0"></i>
-        </button>
-      </form>
     </div>
   </div>
 </nav>
