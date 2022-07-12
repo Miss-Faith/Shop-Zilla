@@ -43,117 +43,123 @@
   <!-- JIJI -->
   <div class="col-lg-3 col-md-3 col-sm-6" style="margin-bottom: 1rem;">
     {% if min_jiji_item %}
-    <div class="card">
-      <div class="card-title text-center">
-        {% if min_jiji_item %}
-        <h4 class="card-header">{{store_jiji}}</h4>
-        {% endif %}
-        {% if min_jiji_item.image %}
-        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-          <img src="{{min_jiji_item.image}}" class="card-img-top img-fluid" alt="image">
-          <a href="#!">
-            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-          </a>
-        </div>
-        {% else %}
-        <img src="/static/images/logo.png" class="card-img-top img-fluid" alt="image">
-        {% endif %}
-      </div>
-      <div class="card-body">
-        <h5 class="text-center card-title">Product Details</h5>
-        <ul class="list-group list-group-flush">
+    <a href="{{min_jiji_item.link}}" target="_blank">
+      <div class="card">
+        <div class="card-title text-center">
           {% if min_jiji_item %}
-          <small>
-            <li class="list-group-item px-3"><strong>Price:&nbsp;</strong>Ksh. {{min_jiji_item.price}}</li>
-          </small>
-          <small>
-            <li class="list-group-item px-3"><strong>Location:&nbsp;</strong>{{min_jiji_item.location}}</li>
-          </small>
-          <!-- <li class="list-group-item px-3">{{min_jiji_item.rating}}</li> -->
-          {% else %}
-          <li class="list-group-item px-3">Search for an item</li>
+          <h4 class="card-header">{{store_jiji}}</h4>
           {% endif %}
-        </ul>
+          {% if min_jiji_item.image %}
+          <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+            <img src="{{min_jiji_item.image}}" class="card-img-top img-fluid" alt="image">
+            <a href="#!">
+              <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+            </a>
+          </div>
+          {% else %}
+          <img src="/static/images/logo.png" class="card-img-top img-fluid" alt="image">
+          {% endif %}
+        </div>
+        <div class="card-body">
+          <h5 class="text-center card-title">Product Details</h5>
+          <ul class="list-group list-group-flush">
+            {% if min_jiji_item %}
+            <small>
+              <li class="list-group-item px-3"><strong>Price:&nbsp;</strong>Ksh. {{min_jiji_item.price}}</li>
+            </small>
+            <small>
+              <li class="list-group-item px-3"><strong>Location:&nbsp;</strong>{{min_jiji_item.location}}</li>
+            </small>
+            <!-- <li class="list-group-item px-3">{{min_jiji_item.rating}}</li> -->
+            {% else %}
+            <li class="list-group-item px-3">Search for an item</li>
+            {% endif %}
+          </ul>
+        </div>
       </div>
-    </div>
+    </a>
     {% endif %}
   </div>
 
   <!-- JUMIA -->
   <div class="col-lg-3 col-md-3 col-sm-6" style="margin-bottom: 1rem;">
     {% if min_jumia_item %}
-    <div class="card">
-      <div class="card-title text-center">
-        {% if min_jumia_item %}
-        <h4 class="card-header">{{store_jumia}}</h4>
-        {% endif %}
-        {% if min_jumia_item.image %}
-        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-          <img src="{{min_jumia_item.image}}" class="card-img-top img-fluid" alt="image">
-          <a href="#!">
-            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-          </a>
-        </div>
-        {% else %}
-        <img src="/static/images/logo.png" class="card-img-top img-fluid" alt="image">
-        {% endif %}
-      </div>
-      <div class="card-body">
-        <h5 class="text-center card-title">Product Details</h5>
-        <ul class="list-group list-group-flush">
+    <a href="{{min_jumia_item.link}}" target="_blank" >
+      <div class="card">
+        <div class="card-title text-center">
           {% if min_jumia_item %}
-          <small>
-            <li class="list-group-item px-3"><strong>Price:&nbsp;</strong>{{min_jumia_item.price}}</li>
-          </small>
-          <small>
-            <li class="list-group-item px-3"><strong>Rating:&nbsp;</strong>{{min_jumia_item.rating}}</li>
-          </small>
-          <!-- <li class="list-group-item px-3">{{min_jumia_item.rating}}</li> -->
-          {% else %}
-          <li class="list-group-item px-3">Search for an item</li>
+          <h4 class="card-header">{{store_jumia}}</h4>
           {% endif %}
-        </ul>
+          {% if min_jumia_item.image %}
+          <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+            <img src="{{min_jumia_item.image}}" class="card-img-top img-fluid" alt="image">
+            <a href="#!">
+              <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+            </a>
+          </div>
+          {% else %}
+          <img src="/static/images/logo.png" class="card-img-top img-fluid" alt="image">
+          {% endif %}
+        </div>
+        <div class="card-body">
+          <h5 class="text-center card-title">Product Details</h5>
+          <ul class="list-group list-group-flush">
+            {% if min_jumia_item %}
+            <small>
+              <li class="list-group-item px-3"><strong>Price:&nbsp;</strong>{{min_jumia_item.price}}</li>
+            </small>
+            <small>
+              <li class="list-group-item px-3"><strong>Rating:&nbsp;</strong>{{min_jumia_item.rating}}</li>
+            </small>
+            <!-- <li class="list-group-item px-3">{{min_jumia_item.rating}}</li> -->
+            {% else %}
+            <li class="list-group-item px-3">Search for an item</li>
+            {% endif %}
+          </ul>
+        </div>
       </div>
-    </div>
+    </a>
     {% endif %}
   </div>
 
   <!-- COPIA -->
   <div class="col-lg-3 col-md-3 col-sm-6" style="margin-bottom: 1rem;">
     {% if min_copia_item %}
-    <div class="card">
-      <div class="card-title text-center">
-        {% if min_copia_item %}
-        <h4 class="card-header">{{store_copia}}</h4>
-        {% endif %}
-        {% if min_copia_item.image %}
-        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-          <img src="{{min_copia_item.image}}" class="card-img-top img-fluid" alt="image">
-          <a href="#!">
-            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-          </a>
+      <a href="{{min_copia_item.link}}">
+        <div class="card">
+          <div class="card-title text-center">
+            {% if min_copia_item %}
+            <h4 class="card-header">{{store_copia}}</h4>
+            {% endif %}
+            {% if min_copia_item.image %}
+            <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+              <img src="{{min_copia_item.image}}" class="card-img-top img-fluid" alt="image">
+              <a href="#!">
+                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+              </a>
+            </div>
+            {% else %}
+            <img src="/static/images/logo.png" class="card-img-top img-fluid" alt="image">
+            {% endif %}
+          </div>
+          <div class="card-body">
+            <h5 class="text-center card-title">Product Details</h5>
+            <ul class="list-group list-group-flush">
+              {% if min_copia_item %}
+              <small>
+                <li class="list-group-item px-3"><strong>Price:&nbsp;</strong>{{min_copia_item.price}}</li>
+              </small>
+              <small>
+                <li class="list-group-item px-3"><strong>Location:&nbsp;</strong>{{min_copia_item.location}}</li>
+              </small>
+              <!-- <li class="list-group-item px-3">{{min_copia_item.rating}}</li> -->
+              {% else %}
+              <li class="list-group-item px-3">Search for an item</li>
+              {% endif %}
+            </ul>
+          </div>
         </div>
-        {% else %}
-        <img src="/static/images/logo.png" class="card-img-top img-fluid" alt="image">
-        {% endif %}
-      </div>
-      <div class="card-body">
-        <h5 class="text-center card-title">Product Details</h5>
-        <ul class="list-group list-group-flush">
-          {% if min_copia_item %}
-          <small>
-            <li class="list-group-item px-3"><strong>Price:&nbsp;</strong>{{min_copia_item.price}}</li>
-          </small>
-          <small>
-            <li class="list-group-item px-3"><strong>Location:&nbsp;</strong>{{min_copia_item.location}}</li>
-          </small>
-          <!-- <li class="list-group-item px-3">{{min_copia_item.rating}}</li> -->
-          {% else %}
-          <li class="list-group-item px-3">Search for an item</li>
-          {% endif %}
-        </ul>
-      </div>
-    </div>
+      </a>
     {% endif %}
   </div>
 <br><br>
