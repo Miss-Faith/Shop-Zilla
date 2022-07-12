@@ -5,8 +5,25 @@
   'GRAD' 0,
   'opsz' 48
 }
-::-webkit-scrollbar{
-  display: none;
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background:  #df6a1f;
+  min-height: 50px; 
+  border-radius:1rem ;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #963f09;  
 }
 /* #search {
  background-image: url('/static/images/logo.png');
@@ -21,6 +38,7 @@
 #carousel-img{
   height: 45vw;
 }
+
 #btnScrollToTop{
   position: fixed;
   right: 1vh;
