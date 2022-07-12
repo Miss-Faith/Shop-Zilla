@@ -32,6 +32,7 @@ def search(request):
     price= []
     image= []
     location= []
+    link= []
     total_items = []
     for item in jiji_items:
         
@@ -39,20 +40,22 @@ def search(request):
         jiji_item_price = item.find('p',class_="b-list-advert__item-price").text.replace('KSh ', '').replace('\n ', '').replace(' ', '').replace(',', '')
         jiji_item_image = item.find('img').get('src')
         jiji_item_location = item.find('div', class_="b-list-advert__item-info").text.split(',')[0]
+        jiji_item_link = item.find('a').get('href')
 
         name.append(jiji_item_name)
         price.append(jiji_item_price)
         image.append(jiji_item_image)
         location.append(jiji_item_location)
+        link.append(jiji_item_link)
 
-
-    for (a, b ,c ,d) in zip(name,price,image,location):
+    for (a, b ,c ,d,e) in zip(name,price,image,location,link):
         
         items = {
             'name': a,
             'price': b,
             'image': c,
-            'location': d
+            'location': d,
+            'link': e,
         } 
         
         total_items.append(items)
