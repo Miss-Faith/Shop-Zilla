@@ -32,7 +32,9 @@
 
   {% endblock %}
 
-
+  <div class="container-fluid mt-5">
+    {% include 'footer.html'%}
+  </div>
 
 
   <!-- MDB -->
@@ -51,7 +53,7 @@
     }
 
     function startTimer() {
-        setInterval(displayNextImage, 4000);
+        setInterval(displayNextImage, 5000);
     }
 
     var images = [], x = -1;

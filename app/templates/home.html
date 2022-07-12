@@ -1,23 +1,28 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container-fluid">
+<div class="container-fluid container1">
   <!-- CAROUSEL -->
-  <div id="carouselExampleCrossfade" class="carousel slide carousel-fade mt-3" data-mdb-ride="carousel">
+  <div id="carousel" class="carousel slide carousel-fade mt-3" data-mdb-ride="carousel">
     <div class="carousel-inner rounded-5 shadow-4-strong">
       <div class="carousel-item active">
-        <img class="d-block w-100" src="http://source.unsplash.com/1600x400/?smartphones" alt="..." id="carousel-img">
+        <img class="d-block w-100" src="http://source.unsplash.com/1600x400/?smartphones" alt="..." id="carousel-img" width="80" height="20">
         <div class="carousel-caption d-none d-md-block">
-          
+          <form class="form mr-sm-2" action='/search' role="search" id="form1">
+            <input class="form-control mr-2 text-center" type="search" placeholder="Search for a product" name="searchitem" aria-label="Search">
+            <small class="form-small">To get a more accurate search specify the product item</small>
+            <br>
+            <button class="form-button text-center btn btn-warning btn-md my-2 my-sm-0" type="submit">Search</button>
+          </form>
         </div>
       </div>
     </div>
-    <button onclick="displayPreviousImage()" class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleCrossfade"
+    <button onclick="displayPreviousImage()" class="carousel-control-prev" type="button" data-mdb-target="#carousel"
       data-mdb-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button onclick="displayPreviousImage()" class="carousel-control-next" type="button" data-mdb-target="#carouselExampleCrossfade"
+    <button onclick="displayPreviousImage()" class="carousel-control-next" type="button" data-mdb-target="#carousel"
       data-mdb-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
@@ -25,8 +30,10 @@
   </div>
   <!-- END OF CAROUSEL -->
 </div>
+
 <div class="container my-4">
-  <h2 class="text-center" id="about">ABOUT US</h2>
+  <hr>
+  <h2 class="text-center" id="about">STORES</h2>
   <hr>
   <div class="row">
     <div class="col-md-4">
@@ -40,11 +47,9 @@
         </div>
         <div class="card-body">
           <h5 class="card-header">Jumia</h5>
-          <p class="card-text mt-3">Jumia, Kenya's no. 1 online retailer was established in May 2013 with the aim and
-            vision to become the one-stop shop for retail in Kenya with implementation of best practices both online and
-            offline.
-            Jumia is the largest online retail store in Kenya.
-          </p>
+          <small><p class="card-text mt-3">Jumia is an online retailer established with the aim and
+            vision to become the one-stop shop for retail in Kenya. It provides a large store and customer base with a variety of products.  
+          </p></small>
         </div>
       </div>
     </div>
@@ -59,12 +64,10 @@
           </a>
         </div>
         <div class="card-body">
-          <h5 class="card-header">Kilimall</h5>
-          <p class="card-text mt-3">Kilimall is Kenya's leading online shopping mall.Kilimall serves a retail-customer
-            base that continues to grow exponentially, offering products that span
-            various categories. Kilimall continues to expand the mall, with
-            the scope of offerings that will increase in variety, simplicity and convenience.
-          </p>
+          <h5 class="card-header">Copia</h5>
+          <small><p class="card-text mt-3">Copia is a service that allows you buy goods at affordable prices and send to mashinani for free.
+            Send items such as foodstuffs, household, construction, electronics & farm feeds.
+          </p></small>
         </div>
       </div>
 
@@ -79,10 +82,10 @@
         </div>
         <div class="card-body">
           <h5 class="card-header">Jiji</h5>
-          <p class="card-text mt-3">Jiji is the best place to sell anything to real people. <br>It is the biggest free
-            online classified with an advanced security system. We provide a simple hassle-free solution to sell and buy
+          <small><p class="card-text mt-3">Jiji allows users to buy and sell anything to people online. It is one a free
+            online classified and provides a simple hassle-free solution to sell and buy
             almost anything.
-          </p>
+          </p></small>
         </div>
 
       </div>
@@ -92,9 +95,6 @@
   <button id="btnScrollToTop">
     <i class="fas fa-angle-up"></i>
   </button>
-</div>
-<div class="container-fluid mt-5">
-  {% include 'footer.html'%}
 </div>
 
 {% endblock %}
