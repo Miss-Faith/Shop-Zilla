@@ -112,17 +112,16 @@ a:hover {
 }
 
 .card1 {
-  max-height:300px;
+  height:300px;
   overflow:auto;
 }
 
 .img1 {
   max-height: 100px;
   object-fit: contain;
-  float: left;
 }
 
 .card-body1 {
-  margin-top: -6vh;
+  margin-top: -5vh;
 }
 

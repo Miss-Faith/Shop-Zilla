@@ -147,14 +147,20 @@ def search(request):
                 'image': c,
                 'rating': d,
                 'link': e
-            } 
+            }
+            for i in jumia_product: 
+                if i not in result: 
+                    result.append(i)  
             
             all_jumia_products.append(jumia_product)
+        result = [] 
+        
         all_jumia_items = sorted(all_jumia_products, key=lambda k: k['price'])
+
+        all_jumia_products = list((all_jumia_products)) 
         if all_jumia_items:
             min_jumia_item = all_jumia_items[0]
-        else:
-            min_jumia_item = "" 
+        
 
     context={
         'all_jiji_items': all_jiji_items,
@@ -163,13 +169,11 @@ def search(request):
         'all_copia_items': all_copia_items,
         'min_copia_item': min_copia_item,
         'store_copia': store_copia,
+        'all_jumia_products':all_jumia_products,
         'all_jumia_items': all_jumia_items,
         'min_jumia_item': min_jumia_item,
-        'store_jumia': store_jumia,
-        'jumia_items': jumia_items,
-        'jiji_items': jiji_items,
-        'jumia_item_price':jumia_item_price,
-        'all_jumia_products':all_jumia_products,
+        'store_jumia': store_jumia,  
+            
     }
 
     return render(request, 'search.html', context)
