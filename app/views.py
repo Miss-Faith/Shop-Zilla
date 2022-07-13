@@ -42,7 +42,6 @@ def search(request):
         jiji_item_name = item.find('h4',class_="qa-advert-title").text
 
         # jiji_item_price = int(item.find('p',class_="b-list-advert__item-price").text.replace('KSh ', '').replace('\n ', '').replace(' ', '').replace(',', ''))
-
         jiji_item_price = item.find('p',class_="b-list-advert__item-price").text.replace('KSh ', '').replace('\n ', '').replace(' ', '').replace(',', '')
 
         jiji_item_image = item.find('img').get('src')
@@ -50,7 +49,7 @@ def search(request):
         jiji_item_link = item.find('a').get('href')
 
         name.append(jiji_item_name)
-        # price.append(jiji_item_price)
+        price.append(jiji_item_price)
         image.append(jiji_item_image)
         location.append(jiji_item_location)
         link.append(jiji_item_link)
@@ -83,6 +82,7 @@ def search(request):
     copia_product_image = []
     copia_product_link = []
     all_copia_products = []
+    sorted_copia_products = []
 
     for item in copia_items:
         copia_item_name = item.find('p', class_="woocommerce-loop-product__title").text
@@ -103,11 +103,17 @@ def search(request):
             'image': c,
             'link': d
         } 
-        
+    
         all_copia_products.append(copia_product)
-    all_copia_items = sorted(all_copia_products, key=lambda k: k['price'])
-    if all_copia_items:
-        min_copia_item = all_copia_items[0]
+    for item in range(0,len(all_copia_products),2):
+        sorted_copia_products.append(all_copia_products[item])
+
+    
+
+    sorted_copia_products = sorted(sorted_copia_products, key=lambda k: k['price'])
+    
+    if sorted_copia_products:
+        min_copia_item = sorted_copia_products[0]
     else:
         min_copia_item = ""
 
@@ -116,6 +122,7 @@ def search(request):
     url_jumia = "%s%s"%(url_jumia_search,search_jumia)
     jumia_results = requests.get(url_jumia)
     jumia_soup = BeautifulSoup(jumia_results.text, 'html.parser')
+    jumia_item = []
     jumia_items = jumia_soup.find_all('article')
 
     jumia_product_name = []
@@ -128,9 +135,9 @@ def search(request):
     for item in jumia_items:
         if item.find('a').get('href') and item.find('h3', class_='name') and item.find('div', class_='prc')and item.find('img',class_='img') and item.find('div', class_='_s'):
             jumia_item_name = item.find('h3', class_="name").text
-            jumia_item_price = item.find('div', class_="prc").text
+            jumia_item_price = int(item.find('div', class_="prc").text.replace("KSh ", "").replace(",", ""))
             jumia_item_image = item.find('img').get('data-src')
-            jumia_item_rating = item.find('div', class_="_s").text
+            jumia_item_rating = item.find('div', class_="_s").text.replace(" out of ", "/")
             jumia_item_link = 'https://jumia.co.ke'+item.find('a').get('href')
 
             jumia_product_link.append(jumia_item_link)
@@ -139,7 +146,7 @@ def search(request):
             jumia_product_image.append(jumia_item_image)
             jumia_product_rating.append(jumia_item_rating)
 
-        for (a, b ,c ,d,e) in zip(jumia_product_name, jumia_product_price,jumia_product_image,jumia_product_rating,jumia_product_link):
+        for (a, b ,c ,d, e) in zip(jumia_product_name, jumia_product_price,jumia_product_image,jumia_product_rating,jumia_product_link):
             
             jumia_product = {
                 'name': a,
@@ -147,25 +154,33 @@ def search(request):
                 'image': c,
                 'rating': d,
                 'link': e
-            } 
+            }
+            for i in jumia_product: 
+                if i not in result: 
+                    result.append(i)  
             
             all_jumia_products.append(jumia_product)
+        result = [] 
+        
         all_jumia_items = sorted(all_jumia_products, key=lambda k: k['price'])
+
+        all_jumia_products = list((all_jumia_products)) 
         if all_jumia_items:
             min_jumia_item = all_jumia_items[0]
-        else:
-            min_jumia_item = "" 
+        
 
     context={
         'all_jiji_items': all_jiji_items,
         'min_jiji_item': min_jiji_item,
         'store_jiji': store_jiji,
-        'all_copia_items': all_copia_items,
+        'copia_products': sorted_copia_products,
         'min_copia_item': min_copia_item,
         'store_copia': store_copia,
+        'all_jumia_products':all_jumia_products,
         'all_jumia_items': all_jumia_items,
         'min_jumia_item': min_jumia_item,
-        'store_jumia': store_jumia,
+        'store_jumia': store_jumia,  
+            
     }
 
     return render(request, 'search.html', context)

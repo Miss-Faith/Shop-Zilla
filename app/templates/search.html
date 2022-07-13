@@ -1,285 +1,236 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<button id="btnScrollToTop">
-  <i class="fas fa-angle-up"></i>
-</button>
+<div class="container-fluid">
+  <!-- CAROUSEL -->
+  <div id="carousel" class="carousel carousel1 slide carousel-fade mt-3" data-mdb-ride="carousel">
+    <div class="carousel-inner rounded-5 shadow-4-strong">
+      <div class="carousel-item carousel-item1 active">
+        <img class="d-block w-100" src="http://source.unsplash.com/1600x400/?smartphones" alt="..." id="carousel-img" width="80" height="20">
+        <div class="carousel-caption d-none d-md-block">
+          <form class="form mr-sm-2" action='/search' role="search">
+            <input class="form-control mr-2 text-center" type="search" placeholder="Search for a product" name="searchitem" aria-label="Search">
+            <small class="form-small">To get a more accurate search, search for a specific product</small>
+            <br>
+            <button class="form-button text-center btn btn-warning btn-md my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <button onclick="displayPreviousImage()" class="button1 carousel-control-prev" type="button" data-mdb-target="#carousel"
+      data-mdb-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button onclick="displayPreviousImage()" class="button1 carousel-control-next" type="button" data-mdb-target="#carousel"
+      data-mdb-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <!-- END OF CAROUSEL -->
 
-<!-- <div id="search" class="container-fluid text-center">
-  <br><br>
-  <form class="form mr-sm-2" action='/search' role="search">
-    <input class="form-control mr-2 text-center" type="search" placeholder="Search for a product" name="searchitem" aria-label="Search">
-    <small class="form-small">To get a more accurate search specify the product item</small>
-    <br>
-    <button class="form-button text-center btn btn-warning btn-md my-2 my-sm-0" type="submit">Search</button>
-  </form>
-  <br>
 </div>
 <br> -->
 
 <div class="row mx-auto container-fluid d-flex justify-content-between mt-3">
   <h4 class="text-center"> Search results for: </h4>
   <hr>
-  <div class="col-lg-3 col-md-3 col-sm-6" style="margin-bottom: 1rem;">
-    <div class="card">
-      <div class="card-header text-center">
-        <h6 class="mt-3">Shop Zilla Ranking</h6>
-      </div>
-      <div class="card-body">
-        <h6 class="text-center">Costing</h6>
-        <ul class="list-group list-group-flush">
-          <small><li class="list-group-item"><span class="compare" >Jiji</span><span class="compare_price">Ksh. 180</span></li></small>
-          <small><li class="list-group-item"><span class="compare" >Jiji</span><span class="compare_price">Ksh. 200</span></li></small>
-          <small><li class="list-group-item"><span class="compare" >Jiji</span><span class="compare_price">Ksh. 220</span></li></small>
-        </ul>
-      </div>
-      <div class="card-body">
-        <h6 class="text-center">Service</h6>
-        <ul class="list-group list-group-flush">
-          <small><li class="list-group-item"><span class="compare" >Jiji</span><span class="compare_price">Rating: 4.8</span></li></small>
-          <small><li class="list-group-item"><span class="compare" >Jiji</span><span class="compare_price">Rating: 4.7</span></li></small>
-          <small><li class="list-group-item"><span class="compare" >Jiji</span><span class="compare_price">Rating: 4.6</span></li></small>
-        </ul>
-      </div>
-    </div>
-  </div>
 
   <!-- JIJI -->
-  <div class="col-lg-3 col-md-3 col-sm-6" style="margin-bottom: 1rem;">
-    {% if min_jiji_item %}
+  <div class="col-lg-4 col-md-3 col-sm-6" style="margin-bottom: 1rem;">
     <a href="{{min_jiji_item.link}}" target="_blank">
-      <div class="card">
+      <div class="card card1">
         <div class="card-title text-center">
-          {% if min_jiji_item %}
 
-          <small>
-            <li class="list-group-item px-3"><strong>Price:&nbsp;</strong>{{min_jiji_item.price}}</li>
-          </small>
-          <small>
-            <li class="list-group-item px-3"><strong>Location:&nbsp;</strong>{{min_jiji_item.location}}</li>
-          </small>
-          <!-- <li class="list-group-item px-3">{{min_jiji_item.rating}}</li> -->
+          <h6 class="card-header">{{store_jiji}}</h6>
 
-          <h4 class="card-header">{{store_jiji}}</h4>
-          {% endif %}
           {% if min_jiji_item.image %}
           <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-            <img src="{{min_jiji_item.image}}" class="card-img-top img-fluid" alt="image">
-            <a href="#!">
-              <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-            </a>
+            <img src="{{min_jiji_item.image}}" class="img1 card-img-top img-fluid" alt="image">
           </div>
-
           {% else %}
-          <img src="/static/images/logo.png" class="card-img-top img-fluid" alt="image">
+          <img src="/static/images/logo.png" class="img1 card-img-top img-fluid" alt="image">
           {% endif %}
         </div>
-        <div class="card-body">
-          <h5 class="text-center card-title">Product Details</h5>
+        <div class="card-body card-body1">
+          <small><p class="text-center card-title">Product Details</p></small>
           <ul class="list-group list-group-flush">
-            {% if min_jiji_item %}
+          {% if min_jiji_item%}  
             <small>
-              <li class="list-group-item px-3"><strong>Price:&nbsp;</strong>Ksh. {{min_jiji_item.price}}</li>
+              <li class="list-group-item px-3"><small><strong>Price:&nbsp;</strong>Ksh. {{min_jiji_item.price}}</small></li>
             </small>
             <small>
-              <li class="list-group-item px-3"><strong>Location:&nbsp;</strong>{{min_jiji_item.location}}</li>
+              <li class="list-group-item px-3"><small><strong>Location:&nbsp;</strong>{{min_jiji_item.location}}</small></li>
             </small>
-            <!-- <li class="list-group-item px-3">{{min_jiji_item.rating}}</li> -->
-            {% else %}
-            <li class="list-group-item px-3">Search for an item</li>
-            {% endif %}
+          {% else %}
+            <li class="list-group-item px-3 text-center">No item available in Jiji</li>
+          {% endif %}  
           </ul>
         </div>
       </div>
     </a>
-    {% endif %}
   </div>
 
-
   <!-- JUMIA -->
-  <div class="col-lg-3 col-md-3 col-sm-6" style="margin-bottom: 1rem;">
-    {% if min_jumia_item %}
+  {% if min_jumia_item %}
+  <div class="col-lg-4 col-md-3 col-sm-6" style="margin-bottom: 1rem;">
     <a href="{{min_jumia_item.link}}" target="_blank" >
-      <div class="card">
+      <div class="card card1">
         <div class="card-title text-center">
-          {% if min_jumia_item %}
-          <h4 class="card-header">{{store_jumia}}</h4>
-          {% endif %}
+          <h6 class="card-header">{{store_jumia}}</h6>
+
           {% if min_jumia_item.image %}
           <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-            <img src="{{min_jumia_item.image}}" class="card-img-top img-fluid" alt="image">
-            <a href="#!">
-              <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-            </a>
+            <img src="{{min_jumia_item.image}}" class="img1 card-img-top" alt="image">
           </div>
           {% else %}
-          <img src="/static/images/logo.png" class="card-img-top img-fluid" alt="image">
+          <img src="/static/images/logo.png" class="img1 card-img-top img-fluid" alt="image">
           {% endif %}
         </div>
-        <div class="card-body">
-          <h5 class="text-center card-title">Product Details</h5>
+
+        <div class="card-body card-body1">
+          <small><p class="text-center card-title">Product Details</p></small>
           <ul class="list-group list-group-flush">
             {% if min_jumia_item %}
             <small>
-              <li class="list-group-item px-3"><strong>Price:&nbsp;</strong>{{min_jumia_item.price}}</li>
+              <li class="list-group-item px-3"><strong><small>Price:&nbsp;</small></strong><small>{{min_jumia_item.price}}</small></li>
             </small>
             <small>
-              <li class="list-group-item px-3"><strong>Rating:&nbsp;</strong>{{min_jumia_item.rating}}</li>
+              <li class="list-group-item px-3"><strong><small>Rating:&nbsp;</small></strong><small>{{min_jumia_item.rating}}</small></li>
             </small>
-            <!-- <li class="list-group-item px-3">{{min_jumia_item.rating}}</li> -->
             {% else %}
-            <li class="list-group-item px-3">Search for an item</li>
+            <li class="list-group-item px-3 text-center">No item available in Jumia</li>
             {% endif %}
           </ul>
         </div>
       </div>
     </a>
-    {% endif %}
   </div>
+  {% endif %}
 
   <!-- COPIA -->
-  <div class="col-lg-3 col-md-3 col-sm-6" style="margin-bottom: 1rem;">
-    {% if min_copia_item %}
+  <div class="col-lg-4 col-md-3 col-sm-6" style="margin-bottom: 1rem;">
       <a href="{{min_copia_item.link}}">
-        <div class="card">
+        <div class="card card1">
           <div class="card-title text-center">
-            {% if min_copia_item %}
-            <h4 class="card-header">{{store_copia}}</h4>
-            {% endif %}
+            <h6 class="card-header">{{store_copia}}</h6>
             {% if min_copia_item.image %}
             <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-              <img src="{{min_copia_item.image}}" class="card-img-top img-fluid" alt="image">
-              <a href="#!">
-                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-              </a>
+              <img src="{{min_copia_item.image}}" class="img1 card-img-top img-fluid" alt="image">
             </div>
             {% else %}
-            <img src="/static/images/logo.png" class="card-img-top img-fluid" alt="image">
+            <img src="/static/images/logo.png" class="img1 card-img-top img-fluid" alt="image">
             {% endif %}
           </div>
-          <div class="card-body">
-            <h5 class="text-center card-title">Product Details</h5>
+          <div class="card-body card-body1">
+            <small><p class="text-center card-title">Product Details</p></small>
             <ul class="list-group list-group-flush">
               {% if min_copia_item %}
               <small>
-                <li class="list-group-item px-3"><strong>Price:&nbsp;</strong>{{min_copia_item.price}}</li>
+                <li class="list-group-item px-3"><small><strong>Price:&nbsp;</strong>{{min_copia_item.price}}</small></li>
               </small>
               <small>
-                <li class="list-group-item px-3"><strong>Location:&nbsp;</strong>{{min_copia_item.location}}</li>
+                <li class="list-group-item px-3"><small><strong>Location:&nbsp;</strong>{{min_copia_item.location}}</small></li>
               </small>
-              <!-- <li class="list-group-item px-3">{{min_copia_item.rating}}</li> -->
               {% else %}
-              <li class="list-group-item px-3">Search for an item</li>
-              {% endif %}
+              <li class="list-group-item px-3 text-center">No item available in Copia</li>
+            {% endif %} 
             </ul>
           </div>
         </div>
       </a>
-    {% endif %}
   </div>
 <br><br>
 
 <!-- END OF PRODUCTS -->
 
 
-<div class="row mt-5">
-  <!-- JIJI ITEMS -->
+<div class="row">
   {% if all_jiji_items %}
   <h1 class="text-center">{{store_jiji}}</h1>
   <br><br><br>
   {% for item in all_jiji_items %}
   <div class="col-lg-2 col-md-3 col-sm-4" style="margin-bottom: 0.5rem;">
+
   <a href="{{item.link}}" target="_blank">
     <div class="card">
       <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
         <img src="{{ item.image }}" alt="{{ item.name }}" class="img-fluid">
-        <a href="#!">
-          <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-        </a>
       </div>
       <div class="card-body">
         <small>
           <p class="card-title text-center"><strong> Product:</strong> {{item.name }}</p>
         </small>
         <ul class="list-group list-group-flush">
-          <small><li class="list-group-item"><strong>Price:&nbsp;</strong> Ksh {{ item.price }}</li></small>
-          <small><li class="list-group-item"><strong>Location:&nbsp;</strong> {{ item.location}}</li></small>
+          <small><li class="list-group-item"><small><strong>Price:&nbsp;</strong> Ksh {{ item.price }}</small></li></small>
+          <small><li class="list-group-item"><small><strong>Location:&nbsp;</strong> {{ item.location}}</small></li></small>
         </ul>
-      </div>
-    </div>
- </a>
 
-      
+      </div>
+      </a>
   </div>    
   {% endfor %}
   {% endif %}
 </div>
-
-<!-- JUMIA ITEMS -->
 <div class="row">
-  {% if all_jumia_items %}
+  {% if all_jumia_products %}
   <h1 class="text-center">{{store_jumia}}</h1>
   <br><br><br>
-  {% for item in all_jumia_items %}
 
+  {% for item in all_jumia_products %}
   <div class="col-lg-2 col-md-3 col-sm-4 mt-3" style="margin-bottom: 0.5rem;">
    <a href="{{item.link}}" target="_blank">
     <div class="card">
       <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-        <img src="{{ item.image }}" alt="{{ item.name }}" class="img-fluid">
-        <a href="#!">
-          <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-        </a>
+        <img src="{{ item.image }}" alt="{{ item.name }}" class="img-fluid img1">
       </div>
       <div class="card-body">
         <small>
           <p class="card-title text-center"><strong> Product:</strong> {{item.name }}</p>
         </small>
         <ul class="list-group list-group-flush">
-          <small><li class="list-group-item"><strong>Price:&nbsp;</strong> Ksh {{ item.price }}</li></small>
-          <small><li class="list-group-item"><strong>Location:&nbsp;</strong> {{ item.rating}}</li></small>
+          <small><li class="list-group-item"><small><strong>Price:&nbsp;</strong>{{ item.price }}</small></li></small>
+          <small><li class="list-group-item"><small><strong>Rating:&nbsp;</strong> {{ item.rating}}</small></li></small>
         </ul>
-      </div>
-    </div>
-   </a>
 
+      </div>
+      </a>
   </div>    
   {% endfor %}
   {% endif %}
 </div>
-
 <div class="row">
-  <!-- COPIA ITEMS -->
-  {% if all_copia_items %}
+  {% if copia_products %}
   <h1 class="text-center">{{store_copia}}</h1>
   <br><br><br>
-  {% for item in all_copia_items %}
+  {% for item in copia_products %}
   <div class="col-lg-2 col-md-3 col-sm-4" style="margin-bottom: 0.5rem;">
 
   <a href="{{item.link}}" target="_blank">
-    <div class="card">
+    <div class="card card1">
       <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
         <img src="{{ item.image }}" alt="{{ item.name }}" class="img-fluid">
-        <a href="#!">
-          <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-        </a>
       </div>
       <div class="card-body">
         <small><p class="card-title text-center"><strong> Product:</strong> {{item.name }}</p>
         </small>
         <ul class="list-group list-group-flush">
           <small><li class="list-group-item"><strong>Price:&nbsp;</strong> Ksh {{ item.price }}</li></small>
-          <small><li class="list-group-item"><strong>Location:&nbsp;</strong> {{ item.location}}</li></small>
+          <!-- <small><li class="list-group-item"><strong>Location:&nbsp;</strong> {{ item.location}}</li></small> -->
         </ul>
-      </div>
-    </div>
-     </a>
 
+      </div>
+      </a>
   </div>    
   {% endfor %}
   {% endif %}
+
+
 </div>
-<div class="container-fluid mt-5">
-  {% include 'footer.html'%}
-</div>
+<button id="btnScrollToTop">
+  <i class="fas fa-angle-up"></i>
+</button>
+
+
 {% endblock %}
