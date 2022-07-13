@@ -8,6 +8,12 @@ django = "*"
 django-bootstrap-v5 = "*"
 django-registration = "*"
 requests = "*"
+django-heroku = "*"
+whitenoise = "*"
+python-decouple = "*"
+dj-database-url = "*"
+gunicorn = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 
