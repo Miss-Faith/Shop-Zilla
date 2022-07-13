@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponse
+from .models import *
 
 from bs4 import BeautifulSoup
 import requests
@@ -11,6 +12,11 @@ def register(request):
     return render(request, 'django_registration/registration_form.html')
 
 def search(request):
+    if request.user.is_authenticated:
+        user = request.user
+    else:
+        user = User.objects.get(username='anonymous')
+    
     if 'searchitem' in request.GET and request.GET["searchitem"]:
         global search_jiji, search_copia, search_jumia, search_item
 
@@ -24,6 +30,8 @@ def search(request):
         search_jiji = "chair"
         search_copia = "chair"
         search_jumia = "chair"
+        
+    Tracker.objects.create(user = user, url = search_item)
 
     store_jiji = 'Jiji'
     url_jiji_search = "https://jiji.co.ke/search?query="
@@ -135,9 +143,9 @@ def search(request):
     all_jumia_products = []
     
     for item in jumia_items:
-        if item.find('a').get('href') and item.find('h3', class_='name') and item.find('div', class_='prc')and item.find('img',class_='img') and item.find('div', class_='_s'):
+        if item.find('a').get('href') and item.find('h3', class_='name') and item.find('div', class_='prc') and item.find('img',class_='img') and item.find('div', class_='_s'):
             jumia_item_name = item.find('h3', class_="name").text
-            jumia_item_price = int(item.find('div', class_="prc").text.replace("KSh ", "").replace(",", ""))
+            jumia_item_price = int(item.find('div', class_="prc").text.replace("KSh ", "").replace(",", "").replace(" - ", ""))
             jumia_item_image = item.find('img').get('data-src')
             jumia_item_rating = item.find('div', class_="_s").text.replace(" out of ", "/")
             jumia_item_link = 'https://jumia.co.ke'+item.find('a').get('href')
