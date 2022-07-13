@@ -12,13 +12,15 @@ def register(request):
 
 def search(request):
     if 'searchitem' in request.GET and request.GET["searchitem"]:
-        global search_jiji, search_copia, search_jumia
+        global search_jiji, search_copia, search_jumia, search_item
 
+        search_item = request.GET.get("searchitem")
         search_jiji = request.GET.get("searchitem").replace(" ", "%20")
         search_copia = request.GET.get("searchitem").replace(" ", "+")
         search_jumia = request.GET.get("searchitem").replace(" ", "+")
 
     else:
+        search_item = "chair"
         search_jiji = "chair"
         search_copia = "chair"
         search_jumia = "chair"
@@ -114,16 +116,14 @@ def search(request):
     
     if sorted_copia_products:
         min_copia_item = sorted_copia_products[0]
-    else:
-        min_copia_item = ""
+    
 
     store_jumia = 'Jumia'
     url_jumia_search =  "https://www.jumia.co.ke/catalog/?q="
     url_jumia = "%s%s"%(url_jumia_search,search_jumia)
     jumia_results = requests.get(url_jumia)
     jumia_soup = BeautifulSoup(jumia_results.text, 'html.parser')
-    jumia_item = []
-    jumia_items = jumia_soup.find_all('article')
+    jumia_items = jumia_soup.find_all('article', class_="prd")
 
     jumia_product_name = []
     jumia_product_price = []
@@ -155,16 +155,12 @@ def search(request):
                 'rating': d,
                 'link': e
             }
-            for i in jumia_product: 
-                if i not in result: 
-                    result.append(i)  
+             
             
             all_jumia_products.append(jumia_product)
-        result = [] 
-        
+                
         all_jumia_items = sorted(all_jumia_products, key=lambda k: k['price'])
 
-        all_jumia_products = list((all_jumia_products)) 
         if all_jumia_items:
             min_jumia_item = all_jumia_items[0]
         
@@ -179,8 +175,9 @@ def search(request):
         'all_jumia_products':all_jumia_products,
         'all_jumia_items': all_jumia_items,
         'min_jumia_item': min_jumia_item,
-        'store_jumia': store_jumia,  
-            
+        'store_jumia': store_jumia,
+        'search_item': search_item,
+                  
     }
 
     return render(request, 'search.html', context)

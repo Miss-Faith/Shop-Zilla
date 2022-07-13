@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <div class="container-fluid">
   <!-- CAROUSEL -->
   <div id="carousel" class="carousel carousel1 slide carousel-fade mt-3" data-mdb-ride="carousel">
@@ -29,12 +30,11 @@
     </button>
   </div>
   <!-- END OF CAROUSEL -->
-
 </div>
-<br> -->
+<br>
 
-<div class="row mx-auto container-fluid d-flex justify-content-between mt-3">
-  <h4 class="text-center"> Search results for: </h4>
+<div class="row mx-auto container-fluid d-flex justify-content-between">
+  <h6 class="text-center"> Shop Zilla recommendation for {{search_item}}</h6>
   <hr>
 
   <!-- JIJI -->
@@ -42,9 +42,7 @@
     <a href="{{min_jiji_item.link}}" target="_blank">
       <div class="card card1">
         <div class="card-title text-center">
-
           <h6 class="card-header">{{store_jiji}}</h6>
-
           {% if min_jiji_item.image %}
           <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
             <img src="{{min_jiji_item.image}}" class="img1 card-img-top img-fluid" alt="image">
@@ -71,6 +69,7 @@
       </div>
     </a>
   </div>
+
 
   <!-- JUMIA -->
   {% if min_jumia_item %}
@@ -142,21 +141,21 @@
       </a>
   </div>
 <br><br>
-</div>
+
 <!-- END OF PRODUCTS -->
 
 
 <div class="row">
+  <!-- JIJI ITEMS -->
   {% if all_jiji_items %}
   <h1 class="text-center">{{store_jiji}}</h1>
   <br><br><br>
   {% for item in all_jiji_items %}
   <div class="col-lg-2 col-md-3 col-sm-4" style="margin-bottom: 0.5rem;">
-
   <a href="{{item.link}}" target="_blank">
     <div class="card">
       <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-        <img src="{{ item.image }}" alt="{{ item.name }}" class="img-fluid">
+        <img src="{{ item.image }}" alt="{{ item.name }}" class="img1 img-fluid">
       </div>
       <div class="card-body">
         <small>
@@ -166,18 +165,21 @@
           <small><li class="list-group-item"><small><strong>Price:&nbsp;</strong> Ksh {{ item.price }}</small></li></small>
           <small><li class="list-group-item"><small><strong>Location:&nbsp;</strong> {{ item.location}}</small></li></small>
         </ul>
-
       </div>
-      </a>
+    </div>
+ </a>
+
+      
   </div>    
   {% endfor %}
   {% endif %}
 </div>
+
+<!-- JUMIA ITEMS -->
 <div class="row">
   {% if all_jumia_products %}
   <h1 class="text-center">{{store_jumia}}</h1>
   <br><br><br>
-
   {% for item in all_jumia_products %}
   <div class="col-lg-2 col-md-3 col-sm-4 mt-3" style="margin-bottom: 0.5rem;">
    <a href="{{item.link}}" target="_blank">
@@ -193,14 +195,17 @@
           <small><li class="list-group-item"><small><strong>Price:&nbsp;</strong>{{ item.price }}</small></li></small>
           <small><li class="list-group-item"><small><strong>Rating:&nbsp;</strong> {{ item.rating}}</small></li></small>
         </ul>
-
       </div>
-      </a>
+    </div>
+   </a>
+
   </div>    
   {% endfor %}
   {% endif %}
 </div>
+
 <div class="row">
+  <!-- COPIA ITEMS -->
   {% if copia_products %}
   <h1 class="text-center">{{store_copia}}</h1>
   <br><br><br>
@@ -210,27 +215,24 @@
   <a href="{{item.link}}" target="_blank">
     <div class="card card1">
       <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-        <img src="{{ item.image }}" alt="{{ item.name }}" class="img-fluid">
+        <img src="{{ item.image }}" alt="{{ item.name }}" class="img1 img-fluid">
       </div>
       <div class="card-body">
         <small><p class="card-title text-center"><strong> Product:</strong> {{item.name }}</p>
         </small>
         <ul class="list-group list-group-flush">
-          <small><li class="list-group-item"><strong>Price:&nbsp;</strong> Ksh {{ item.price }}</li></small>
-          <!-- <small><li class="list-group-item"><strong>Location:&nbsp;</strong> {{ item.location}}</li></small> -->
+          <small><li class="list-group-item"><small><strong>Price:&nbsp;</strong> Ksh {{ item.price }}</small></li></small>
+          <!-- <small><li class="list-group-item"><small><strong>Location:&nbsp;</strong> {{ item.location}}</small></li></small> -->
         </ul>
-
       </div>
-      </a>
+    </div>
+     </a>
+
   </div>    
   {% endfor %}
   {% endif %}
-
-
 </div>
 <button id="btnScrollToTop">
   <i class="fas fa-angle-up"></i>
 </button>
-
-
 {% endblock %}
