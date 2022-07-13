@@ -50,7 +50,7 @@ def search(request):
         jiji_item_link = item.find('a').get('href')
 
         name.append(jiji_item_name)
-        # price.append(jiji_item_price)
+        price.append(jiji_item_price)
         image.append(jiji_item_image)
         location.append(jiji_item_location)
         link.append(jiji_item_link)
