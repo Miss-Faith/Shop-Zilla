@@ -17,7 +17,7 @@ Shop-Zilla is a web application that  helps shoppers to choose their suitable pr
 ### Requirements
 1. Clone the repository by running
 
-        https://github.com/Miss-Faith/Shop-Zilla
+        https://https://github.com/Miss-Faith/Shop-Zilla
     Navigate to the project
 
         cd Shop-Zilla
