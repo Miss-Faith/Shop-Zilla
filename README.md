@@ -8,7 +8,6 @@
 * lilian Muita
 * Kelvin Wepo
 
-
 ## Description
 Shop-Zilla is a web application that  helps shoppers to choose their suitable products from E-commerce sites in just one click at their conviniences.
 
