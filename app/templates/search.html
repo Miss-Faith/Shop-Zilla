@@ -221,10 +221,10 @@
   {% endif %}
 </div>
 <div class="row">
-  {% if all_copia_items %}
+  {% if copia_products %}
   <h1 class="text-center">{{store_copia}}</h1>
   <br><br><br>
-  {% for item in all_copia_items %}
+  {% for item in copia_products %}
   <div class="col-lg-2 col-md-3 col-sm-4" style="margin-bottom: 0.5rem;">
       <a href="{{item.link}}" target="_blank">
         <div class="card">
@@ -235,7 +235,7 @@
           <div class="card-body">
             <ul class="list-group list-group-flush">
               <small><li class="list-group-item"> price: Ksh {{ item.price }}</li></small>
-              <small><li class="list-group-item"> location: {{ item.location}}</li></small>
+              <small><li class="list-group-item"> location: Nairobi</li></small>
             </ul>
           </div>
       </div>

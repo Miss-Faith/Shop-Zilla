@@ -80,6 +80,7 @@ def search(request):
     copia_product_image = []
     copia_product_link = []
     all_copia_products = []
+    sorted_copia_products = []
 
     for item in copia_items:
         copia_item_name = item.find('p', class_="woocommerce-loop-product__title").text
@@ -100,11 +101,17 @@ def search(request):
             'image': c,
             'link': d
         } 
-        
+    
         all_copia_products.append(copia_product)
-    all_copia_items = sorted(all_copia_products, key=lambda k: k['price'])
-    if all_copia_items:
-        min_copia_item = all_copia_items[0]
+    for item in range(0,len(all_copia_products),2):
+        sorted_copia_products.append(all_copia_products[item])
+
+    
+
+    sorted_copia_products = sorted(sorted_copia_products, key=lambda k: k['price'])
+    
+    if sorted_copia_products:
+        min_copia_item = sorted_copia_products[0]
     else:
         min_copia_item = ""
 
@@ -157,7 +164,7 @@ def search(request):
         'all_jiji_items': all_jiji_items,
         'min_jiji_item': min_jiji_item,
         'store_jiji': store_jiji,
-        'all_copia_items': all_copia_items,
+        'copia_products': sorted_copia_products,
         'min_copia_item': min_copia_item,
         'store_copia': store_copia,
         'all_jumia_items': all_jumia_items,
