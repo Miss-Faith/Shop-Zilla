@@ -7,6 +7,9 @@ import requests
 def home(request):
     return render(request, 'home.html')
 
+def register(request):
+    return render(request, 'django_registration/registration_form.html')
+
 def search(request):
     if 'searchitem' in request.GET and request.GET["searchitem"]:
         global search_jiji, search_copia, search_jumia
