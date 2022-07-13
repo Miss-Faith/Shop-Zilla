@@ -72,7 +72,7 @@
 
 
   <!-- JUMIA -->
-  {% if min_jumia_item %}
+
   <div class="col-lg-4 col-md-3 col-sm-6" style="margin-bottom: 1rem;">
     <a href="{{min_jumia_item.link}}" target="_blank" >
       <div class="card card1">
@@ -106,7 +106,7 @@
       </div>
     </a>
   </div>
-  {% endif %}
+
 
   <!-- COPIA -->
   <div class="col-lg-4 col-md-3 col-sm-6" style="margin-bottom: 1rem;">
@@ -130,7 +130,7 @@
                 <li class="list-group-item px-3"><small><strong>Price:&nbsp;</strong>{{min_copia_item.price}}</small></li>
               </small>
               <small>
-                <li class="list-group-item px-3"><small><strong>Location:&nbsp;</strong>{{min_copia_item.location}}</small></li>
+                <li class="list-group-item px-3"><small><strong>Location:&nbsp;</strong>Nairobi</small></li>
               </small>
               {% else %}
               <li class="list-group-item px-3 text-center">No item available in Copia</li>
@@ -155,7 +155,7 @@
   <a href="{{item.link}}" target="_blank">
     <div class="card">
       <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-        <img src="{{ item.image }}" alt="{{ item.name }}" class="img1 img-fluid">
+        <img src="{{ item.image }}" alt="{{ item.name }}" class="img1 card-img-top img-fluid">
       </div>
       <div class="card-body">
         <small>
@@ -185,7 +185,7 @@
    <a href="{{item.link}}" target="_blank">
     <div class="card">
       <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-        <img src="{{ item.image }}" alt="{{ item.name }}" class="img-fluid img1">
+        <img src="{{ item.image }}" alt="{{ item.name }}" class="img-fluid img1 card-img-top">
       </div>
       <div class="card-body">
         <small>
@@ -215,14 +215,14 @@
   <a href="{{item.link}}" target="_blank">
     <div class="card card1">
       <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-        <img src="{{ item.image }}" alt="{{ item.name }}" class="img1 img-fluid">
+        <img src="{{ item.image }}" alt="{{ item.name }}" class="img1 img-fluid card-img-top">
       </div>
       <div class="card-body">
         <small><p class="card-title text-center"><strong> Product:</strong> {{item.name }}</p>
         </small>
         <ul class="list-group list-group-flush">
           <small><li class="list-group-item"><small><strong>Price:&nbsp;</strong> Ksh {{ item.price }}</small></li></small>
-          <!-- <small><li class="list-group-item"><small><strong>Location:&nbsp;</strong> {{ item.location}}</small></li></small> -->
+          <small><li class="list-group-item"><small><strong>Location:&nbsp;</strong>Nairobi</small></li></small>
         </ul>
       </div>
     </div>
