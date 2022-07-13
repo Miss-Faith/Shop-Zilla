@@ -1,6 +1,5 @@
 # Shop-Zilla
 
-
 ## Contributors
 * Faith Mwangi
 * Martin Maina
