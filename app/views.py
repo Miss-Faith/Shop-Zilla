@@ -167,14 +167,17 @@ def search(request):
 
     context={
         'all_jiji_items': all_jiji_items,
-        'min_jiji_item': min_jiji_item,
+        if min_jiji_item
+         'min_jiji_item': min_jiji_item,
         'store_jiji': store_jiji,
         'copia_products': sorted_copia_products,
-        'min_copia_item': min_copia_item,
+        if min_copia_item:
+            'min_copia_item': min_copia_item,
         'store_copia': store_copia,
         'all_jumia_products':all_jumia_products,
         'all_jumia_items': all_jumia_items,
-        'min_jumia_item': min_jumia_item,
+        if min_jumia_item
+            'min_jumia_item': min_jumia_item,
         'store_jumia': store_jumia,
         'search_item': search_item,
                   
