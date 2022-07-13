@@ -1,15 +1,15 @@
 from django.db import models
+from django.contrib.auth.models import User
 import datetime as dt
 
 # Create your models here.
 class Tracker(models.Model):
-    url = models.URLField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tracker')
-    time = models.DateTimeField(auto_now_add=True)
+  url = models.URLField()
+  user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tracker')
+  time = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
+  def __str__(self):
     return str(self.user.username)
 
-  @classmethod
-  def save_post(self):
+  def save_search(self):
     self.save()
