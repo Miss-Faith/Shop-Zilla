@@ -1,1 +1,1 @@
-web: gunicorn shopzilla.wsgi --log-file -
+web: gunicorn shopzilla.wsgi
