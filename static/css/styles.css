@@ -1,3 +1,31 @@
+#navbar {
+  height: 60px;
+}
+
+.container1 {
+  margin-top: 5vh;
+}
+
+.carousel .carousel-item {
+  height: 80vh;
+}
+
+.carousel-item img {
+    position: absolute;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    min-height: 80vh;
+}
+
+#form1 {
+  margin-top: -35vh;
+}
+
+.btn-warning {
+  background:  #df6a1f; 
+}
+
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
@@ -58,4 +86,8 @@
 }
 .info{
   color: black;
+}
+
+a:hover {
+  color: #df6a1f!important;
 }
