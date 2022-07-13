@@ -128,7 +128,7 @@ def search(request):
     for item in jumia_items:
         if item.find('a').get('href') and item.find('h3', class_='name') and item.find('div', class_='prc')and item.find('img',class_='img') and item.find('div', class_='_s'):
             jumia_item_name = item.find('h3', class_="name").text
-            jumia_item_price = item.find('div', class_="prc").text.replace("KSh ", "")
+            jumia_item_price = int(item.find('div', class_="prc").text.replace("KSh ", "").replace(",", ""))
             jumia_item_image = item.find('img').get('data-src')
             jumia_item_rating = item.find('div', class_="_s").text.replace(" out of ", "/")
             jumia_item_link = 'https://jumia.co.ke'+item.find('a').get('href')
@@ -168,6 +168,8 @@ def search(request):
         'store_jumia': store_jumia,
         'jumia_items': jumia_items,
         'jiji_items': jiji_items,
+        'jumia_item_price':jumia_item_price,
+        'all_jumia_products':all_jumia_products,
     }
 
     return render(request, 'search.html', context)
