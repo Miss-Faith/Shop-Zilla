@@ -18,12 +18,28 @@
     min-height: 80vh;
 }
 
+.carousel1 .carousel-item1 {
+  height: 34vh;
+}
+
+.carousel-item1 img {
+    position: absolute;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    min-height: 34vh;
+}
+
 #form1 {
   margin-top: -35vh;
 }
 
+.button1 {
+  margin-top: -8vh;
+}
+
 .btn-warning {
-  background:  #df6a1f; 
+  background:  #df6a1f!important; 
 }
 
 .material-symbols-outlined {
@@ -53,9 +69,6 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #963f09;  
 }
-/* #search {
- background-image: url('/static/images/logo.png');
-} */
 
 .compare_price {
   float: right;
@@ -84,10 +97,32 @@
 #btnScrollToTop:active{
   background-color: black;
 }
+
 .info{
   color: black;
+}
+
+a {
+  text-decoration: none!important;
+  color: inherit!important;
 }
 
 a:hover {
   color: #df6a1f!important;
 }
+
+.card1 {
+  max-height:300px;
+  overflow:auto;
+}
+
+.img1 {
+  max-height: 100px;
+  object-fit: contain;
+  float: left;
+}
+
+.card-body1 {
+  margin-top: -6vh;
+}
+
