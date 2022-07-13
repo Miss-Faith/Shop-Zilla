@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, redirect
 
 from bs4 import BeautifulSoup
 import requests
@@ -169,4 +169,3 @@ def search(request):
     }
 
     return render(request, 'search.html', context)
-
