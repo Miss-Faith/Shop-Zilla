@@ -116,6 +116,8 @@ def search(request):
     
     if sorted_copia_products:
         min_copia_item = sorted_copia_products[0]
+    else:
+        min_copia_item = ""
     
 
     store_jumia = 'Jumia'
@@ -163,21 +165,20 @@ def search(request):
 
         if all_jumia_items:
             min_jumia_item = all_jumia_items[0]
+        else:
+            min_jumia_item = ""
         
 
     context={
         'all_jiji_items': all_jiji_items,
-        if min_jiji_item
-         'min_jiji_item': min_jiji_item,
+        'min_jiji_item': min_jiji_item,
         'store_jiji': store_jiji,
         'copia_products': sorted_copia_products,
-        if min_copia_item:
-            'min_copia_item': min_copia_item,
+        'min_copia_item': min_copia_item,
         'store_copia': store_copia,
         'all_jumia_products':all_jumia_products,
         'all_jumia_items': all_jumia_items,
-        if min_jumia_item
-            'min_jumia_item': min_jumia_item,
+        'min_jumia_item': min_jumia_item,
         'store_jumia': store_jumia,
         'search_item': search_item,
                   
